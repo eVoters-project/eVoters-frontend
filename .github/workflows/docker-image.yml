@@ -39,17 +39,18 @@ jobs:
       # uses: docker/build-push-action@2cdde995de11925a030ce8070c3d77a52ffcf1c0
       uses: docker/build-push-action@v5.3.0
       with:
+        # Build's context is the set of files located in the specified PATH or URL
+        context: .
         # Builder instance
         builder: ${{ steps.buildx.outputs.name }}
+
+        push: true
+        # List of tags
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/e-voters-app:latest
         # List of external cache sources for buildx (e.g., user/app:cache, type=local,src=path/to/dir)
         cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/e-voters-app:buildcache
         # List of cache export destinations for buildx (e.g., user/app:cache, type=local,dest=path/to/dir)
         cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/e-voters-app:buildcache,mode=max
-        # Build's context is the set of files located in the specified PATH or URL
-        context: .
-        push: true
-        # List of tags
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/e-voters-app:latest
 
   deploy:
     needs: build
