@@ -36,5 +36,10 @@ export const routes: Routes = [
   {
     path: 'voters',
     loadChildren: () => import('./modules/voters/voters.module').then(m => m.VotersModule)
+  },
+  {
+    path: '',
+    redirectTo: 'auth',
+    pathMatch: 'full'
   }
 ];

@@ -1,1 +1,35 @@
-<p>login works!</p>
+
+<div class="flex flex-column w-9">
+  <p>login works!</p>
+</div>
+
+<!-- login container -->
+<div class="flex flex-column align-items-center justify-content-center surface-200 w-3 px-3">
+
+  <h2>ADMIN</h2>
+
+  <form [formGroup]="fg" class="flex flex-column gap-2">
+
+    <div class="flex flex-column gap-2">
+      <label for="username">Username</label>
+      <p-iconField iconPosition="left">
+        <p-inputIcon styleClass="pi pi-user" />
+        <input id="username" pInputText type="text" formControlName="username" class="outline-none" />
+      </p-iconField>
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="password">Password</label>
+      <p-iconField iconPosition="left">
+        <p-inputIcon styleClass="pi pi-key" />
+        <input id="password" pInputText type="password" formControlName="password"/>
+      </p-iconField>
+    </div>
+
+    <div class="flex flex-column mt-3">
+      <button pButton type="button" class="flex flex-grow-1 w-full" label="Login" (click)="login();"></button>
+    </div>
+
+  </form>
+
+</div>
