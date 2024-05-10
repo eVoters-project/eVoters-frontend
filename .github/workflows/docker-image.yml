@@ -68,7 +68,7 @@ jobs:
           key: ${{ secrets.SSH_TOKEN }}
           # Commands to be executed.
           script: |
-            cd deployment-scripts/e-voters-app/
+            cd deployment-scripts/e-voters/
             docker compose pull e-voters-app
             docker compose up e-voters-app -d
             docker compose logs --tail 20 e-voters-app
