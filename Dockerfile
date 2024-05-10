@@ -1,5 +1,5 @@
 # #stage 1
-FROM node:18.9.0-alpine3.15 As development
+FROM node:18.13.0-alpine As development
 
 WORKDIR /app
 
