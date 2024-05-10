@@ -17,4 +17,4 @@ RUN npm run build
 # #stage 2
 FROM nginx:alpine
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=development /app/dist/e-voters-app /usr/share/nginx/html
+COPY --from=development /app/dist/browser/e-voters-app /usr/share/nginx/html
