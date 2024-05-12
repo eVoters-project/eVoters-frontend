@@ -1,0 +1,20 @@
+<ng-container>
+  @if (root) {
+    <div class="layout-root-menu-item-text">{{menu.label}}</div>
+  }
+  @if (menu.items) {
+
+    @for (item of menu.items; track $index) {
+
+      <a tabindex="0" [routerLink]="item.routerLink" pRipple>
+        <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
+        <span class="layout-menuitem-text">{{item.label}}</span>
+        <!-- @if (item?.items) {
+          <i class="pi pi-fw pi-angle-down"></i>
+        } -->
+      </a>
+
+    }
+
+  }
+</ng-container>

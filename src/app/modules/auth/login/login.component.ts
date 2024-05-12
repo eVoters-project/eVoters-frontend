@@ -17,7 +17,7 @@ export class LoginComponent {
   });
 
   login() {
-    this.router.navigateByUrl('/dashboard');
+    this.router.navigateByUrl('/');
   }
 
 }

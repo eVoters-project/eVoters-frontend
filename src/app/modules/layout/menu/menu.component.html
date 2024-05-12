@@ -1,0 +1,7 @@
+<ul class="layout-menu">
+  @for (menu of menus; track $index;) {
+    <li app-menu-item [menu]="menu" [root]="true"></li>
+  } @empty {
+    No Available Menus
+  }
+</ul>
