@@ -20,12 +20,12 @@ export class MenuComponent implements OnInit {
 
     this.menus = [
       {
-        label: 'Home',
+        label: 'E-Voters Menu',
         visible: true,
         items: [
           { label: 'Dashboard', icon: 'pi pi-gauge', routerLink: ['/dashboard'] },
           { label: 'Voters', icon: 'pi pi-slack', routerLink: ['/voters'] },
-          { label: 'Leaders', icon: 'pi pi-crown', routerLink: ['/leaders'] },
+          { label: 'Leaders', icon: 'pi pi-crown', routerLink: ['/leader'] },
           { label: 'Party', icon: 'pi pi-users', routerLink: ['party'] },
           { label: 'Straw Vote', icon: 'pi pi-lightbulb', routerLink: ['straw-vote'] },
           { label: 'Vote Count', icon: 'pi pi-sort-numeric-down', routerLink: ['/vote-count'] },

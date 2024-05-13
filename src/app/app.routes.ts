@@ -53,6 +53,11 @@ export const routes: Routes = [
         loadChildren: () => import('./modules/voters/voters.module').then(m => m.VotersModule),
         title: 'E-Voters | Voters'
       },
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full'
+      }
     ]
   },
 ];

@@ -31,6 +31,7 @@
 
     a {
       user-select: none;
+      text-decoration: none;
 
       &.active-menu-item {
         >.layout-submenu-toggler {
