@@ -1,3 +1,23 @@
-<div class="card">
+<div class="card flex flex-column gap-3">
+
   <h3 class="title">{{title}}</h3>
+
+  <section id="statistics" class="flex flex-row gap-3">
+
+    @for (stats of statistics; track stats.title) {
+      <app-dashboard-totals [title]="stats.title" [total]="stats.total"></app-dashboard-totals>
+    }
+
+  </section>
+
+  <section id="graph-barangay" class="flex flex-column">
+
+    <app-dashboard-barangay-graph></app-dashboard-barangay-graph>
+
+  </section>
+
+  <section id="leaders-table">
+
+  </section>
+
 </div>

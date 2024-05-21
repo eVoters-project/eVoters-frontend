@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CampaignColumns } from '../data/campaign.column';
+import { CampaignInterface } from '../data/interface';
 
 @Component({
   selector: 'ev-campaign-index',
@@ -7,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class IndexComponent {
   title = 'Campaign';
+
+  cols = CampaignColumns;
+  campaign!: CampaignInterface[];
+
 }

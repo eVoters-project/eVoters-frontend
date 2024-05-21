@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { CampaignRoutingModule } from './campaign-routing.module';
 import { IndexComponent } from './index/index.component';
+import { CardModule } from 'primeng/card';
+import { TableModule } from 'primeng/table';
 
 
 @NgModule({
@@ -11,7 +13,10 @@ import { IndexComponent } from './index/index.component';
   ],
   imports: [
     CommonModule,
-    CampaignRoutingModule
+    CampaignRoutingModule,
+
+    CardModule,
+    TableModule
   ]
 })
 export class CampaignModule { }
