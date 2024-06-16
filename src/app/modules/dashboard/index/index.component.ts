@@ -27,4 +27,17 @@ export class IndexComponent {
     }
   ]
 
+  options: google.maps.MapOptions = {
+    mapId: "DEMO_MAP_ID",
+    center: { lat: 10.4026384, lng: 123.7151703 },
+    zoom: 8,
+    disableDefaultUI: true,
+    styles: [
+      {
+        featureType: 'poi',
+        stylers: [ { visibility: 'on' }]
+      }
+    ]
+  };
+
 }

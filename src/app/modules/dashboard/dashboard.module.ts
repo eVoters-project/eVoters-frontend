@@ -10,6 +10,7 @@ import { CardModule } from 'primeng/card';
 import { ChartModule } from 'primeng/chart';
 import { DividerModule } from 'primeng/divider';
 import { TableModule } from 'primeng/table';
+import { GoogleMapComponent } from './components/google-map/google-map.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { TableModule } from 'primeng/table';
   imports: [
     CommonModule,
     DashboardRoutingModule,
+    GoogleMapComponent,
 
     CardModule,
     ChartModule,

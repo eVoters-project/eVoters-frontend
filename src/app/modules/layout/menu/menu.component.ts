@@ -24,6 +24,7 @@ export class MenuComponent implements OnInit {
         visible: true,
         items: [
           { label: 'Dashboard', icon: 'pi pi-gauge', routerLink: ['/dashboard'] },
+          { label: 'Statistics', icon: 'pi pi-gauge', routerLink: ['/statistics'] },
           { label: 'Voters', icon: 'pi pi-slack', routerLink: ['/voters'] },
           { label: 'Leaders', icon: 'pi pi-crown', routerLink: ['/leader'] },
           { label: 'Party', icon: 'pi pi-users', routerLink: ['party'] },
