@@ -11,6 +11,8 @@ import { SidebarModule } from 'primeng/sidebar';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { CalendarModule } from 'primeng/calendar';
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     VotersRoutingModule,
 
     CardModule,
@@ -26,6 +30,7 @@ import { CalendarModule } from 'primeng/calendar';
     CalendarModule,
     DropdownModule,
     InputTextModule,
+    ScrollPanelModule,
     SidebarModule
   ]
 })
