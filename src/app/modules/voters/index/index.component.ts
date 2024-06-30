@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { VotersInterface } from '../interface';
 import { VoterColumns } from '../data/voter.column';
+import { Gender } from '../../../data';
 
 @Component({
   selector: 'ev-voters-index',
@@ -9,7 +10,12 @@ import { VoterColumns } from '../data/voter.column';
 })
 export class IndexComponent {
 
+
+  genders = Gender;
+
   cols = VoterColumns;
   voters!: VotersInterface[];
+
+  addVoterSidebarVisible = false;
 
 }
