@@ -1,29 +1,48 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { VoterColumns } from '../data/voter.column';
 import { Gender } from '../../../data';
 import { FormBuilder, FormGroup, NonNullableFormBuilder } from '@angular/forms';
 import { VoterApiService } from '../../../service/api';
 import { HttpUltils } from '../../../utils/http';
 import { VoterInterface } from '../../../interface';
+import { VoterService } from '../service/voter.service';
+import { debounce, debounceTime, delay, Subscription, tap } from 'rxjs';
 
 @Component({
   selector: 'ev-voters-index',
   templateUrl: './index.component.html',
   styleUrl: './index.component.scss',
-  providers: [VoterApiService]
+  providers: [VoterService, VoterApiService]
 })
-export class IndexComponent implements OnInit {
+export class IndexComponent implements OnInit, OnDestroy {
 
-  // data = new HttpUltils<VoterInterface>();
   fb = inject(FormBuilder);
-  voterApi = inject(VoterApiService);
+  protected voterService = inject(VoterService);
+
+  arr_subs = new Array<Subscription>();
 
   genders = Gender;
 
-  cols = VoterColumns;
   voters!: VoterInterface[];
+  voter!: VoterInterface;
+
+  cols = VoterColumns;
+
   isLoading = false;
   addVoterSidebarVisible = false;
+
+  protected gridMenus = [
+    {
+      label: 'Voter Actions',
+      items: [
+        {
+          label: 'Set Coordinates',
+          icon: 'pi pi-map-marker',
+          command: () => this.findCoordinates()
+        }
+      ]
+    }
+  ]
 
   rf: FormGroup = this.fb.group({
     firstname: 'Ranel',
@@ -31,7 +50,7 @@ export class IndexComponent implements OnInit {
     lastname: 'Parba',
     nickname: '',
     gender: '',
-    date_of_birth:'',
+    date_of_birth: '',
     address: '',
     precinct_no: '',
     vin_no: '',
@@ -42,20 +61,43 @@ export class IndexComponent implements OnInit {
     vote_status: '',
     longitude: '',
     latitude: '',
-  })
+  });
 
-  constructor() {}
+  constructor() {
+    this.voterService.onInit();
+  }
 
   ngOnInit(): void {
+    this.arr_subs.push(
+      this.voterDataSubscription()
+    );
+    this.voterService.requestData();
+  }
 
-    this.voterApi.getVoters().subscribe((data: any) => {
-      console.log(data);
-      this.voters = data.data as VoterInterface[];
-    })
+  ngOnDestroy(): void {
+    this.arr_subs.forEach(sub => {
+      sub.unsubscribe();
+    });
+  }
+
+  private voterDataSubscription(): Subscription {
+    return this.voterService.voterData$.
+      pipe(
+        tap(() => {
+          this.voters = [];
+          this.isLoading = true
+        }),
+        delay(500),
+        debounceTime(1000)
+      )
+      .subscribe((data) => {
+        this.voters = data;
+        this.isLoading = false;
+      })
+  }
+
+  private findCoordinates() {
 
   }
 
-  submit() {
-
-  }
 }

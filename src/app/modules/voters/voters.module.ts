@@ -10,6 +10,7 @@ import { ButtonModule } from 'primeng/button';
 import { SidebarModule } from 'primeng/sidebar';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
+import { MenuModule } from 'primeng/menu';
 import { CalendarModule } from 'primeng/calendar';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -30,6 +31,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CalendarModule,
     DropdownModule,
     InputTextModule,
+    MenuModule,
     ScrollPanelModule,
     SidebarModule
   ]

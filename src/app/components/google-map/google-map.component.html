@@ -1,0 +1,13 @@
+
+<div id="gmap">
+  <google-map
+    [options]="mapOptions"
+    height="100%"
+    width="100%">
+
+    @for (coords of voterCoordinates; track $index) {
+      <map-marker [position]="coords" [options]="voterLocationMarkerConfig"></map-marker>
+    }
+
+  </google-map>
+</div>

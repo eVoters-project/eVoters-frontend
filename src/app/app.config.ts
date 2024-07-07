@@ -6,6 +6,10 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideStore } from '@ngrx/store';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient } from '@angular/common/http';
+import { VoterApiService, VoterMapLocationApiService } from './service/api';
+import { MapService, VoterMapLocationService } from './service/map';
+import { BaseService } from './service';
+import { VoterService } from './modules/voters/service/voter.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,7 +21,10 @@ export const appConfig: ApplicationConfig = {
       logOnly: !isDevMode(),
       autoPause: true
     }),
-
+    BaseService,
+    MapService,
+    VoterMapLocationApiService,
+    VoterMapLocationService,
   ]
 };
 

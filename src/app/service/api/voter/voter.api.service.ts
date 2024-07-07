@@ -8,7 +8,7 @@ export class VoterApiService {
 
   urlAPI = environment.urlAPI;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getVoters() {
     return this.http.get(`${this.urlAPI}/voters`);

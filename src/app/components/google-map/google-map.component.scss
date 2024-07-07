@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+#gmap {
+  border-radius: 6px;
+  height: calc(100vh - 100px);
+  width: calc(100vw - 340px);
+  overflow: hidden;
+}
