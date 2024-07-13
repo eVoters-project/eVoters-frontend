@@ -22,7 +22,7 @@ export class VoterApiService {
     return this.http.post(`${this.urlAPI}/voters`, data);
   }
 
-  updateVoter(data: VoterInterface) {
+  updateVoter(data: Partial<VoterInterface>) {
     const { id, ...payload } = data;
     return this.http.patch(`${this.urlAPI}/voters/${id}`, payload);
   }

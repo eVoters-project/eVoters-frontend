@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { VotersRoutingModule } from './voters-routing.module';
 import { IndexComponent } from './index/index.component';
 
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
@@ -14,18 +15,22 @@ import { MenuModule } from 'primeng/menu';
 import { CalendarModule } from 'primeng/calendar';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { VoterFindCoordinatesComponent } from './voter-find-coordinates/voter-find-coordinates.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
   declarations: [
-    IndexComponent
+    IndexComponent,
+    VoterFindCoordinatesComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     VotersRoutingModule,
-
+    GoogleMapsModule,
     CardModule,
+    DynamicDialogModule,
     TableModule,
     ButtonModule,
     CalendarModule,

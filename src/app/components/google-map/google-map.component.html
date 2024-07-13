@@ -3,11 +3,23 @@
   <google-map
     [options]="mapOptions"
     height="100%"
-    width="100%">
+    width="100%"
+    (mapClick)="addMarker($event);">
 
     @for (coords of voterCoordinates; track $index) {
       <map-marker [position]="coords" [options]="voterLocationMarkerConfig"></map-marker>
     }
+
+    @if (markerCoordinates()) {
+      <map-marker
+        #marker="mapMarker"
+        [position]="markerCoordinates()!"
+        [options]="markerConfig()"
+        (mapClick)="onMapMarkerInfo(marker);">
+      </map-marker>
+    }
+
+    <map-info-window>This is a sample info window</map-info-window>
 
   </google-map>
 </div>

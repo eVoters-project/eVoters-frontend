@@ -1,4 +1,4 @@
-export class VoterLocationMapMarkerConfig implements google.maps.MarkerOptions {
+export class MapMarkerConfig implements google.maps.MarkerOptions {
 
   constructor(config?: Partial<google.maps.MarkerOptions>) {
     if (config) {
@@ -7,9 +7,21 @@ export class VoterLocationMapMarkerConfig implements google.maps.MarkerOptions {
   }
 
   /**
-   * @memberof VoterLocationMapMarkerConfig
+   * @memberof MapMarkerConfig
    * @default false
    */
-  draggable = false;
+  draggable = true;
+
+  /**
+  * @memberof MapMarkerConfig
+   * @default BOUNCE
+   */
+  animation = google.maps.Animation.DROP;
+
+  /**
+   * @memberof MapMarkerConfig
+   *
+   */
+  icon = "";
 
 }

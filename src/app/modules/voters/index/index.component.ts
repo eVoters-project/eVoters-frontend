@@ -7,17 +7,21 @@ import { HttpUltils } from '../../../utils/http';
 import { VoterInterface } from '../../../interface';
 import { VoterService } from '../service/voter.service';
 import { debounce, debounceTime, delay, Subscription, tap } from 'rxjs';
+import { DialogService } from 'primeng/dynamicdialog';
+import { VoterFindCoordinatesComponent } from '../voter-find-coordinates/voter-find-coordinates.component';
+import { getVoterFullname } from './helpers';
 
 @Component({
   selector: 'ev-voters-index',
   templateUrl: './index.component.html',
   styleUrl: './index.component.scss',
-  providers: [VoterService, VoterApiService]
+  providers: [VoterService, VoterApiService, DialogService]
 })
 export class IndexComponent implements OnInit, OnDestroy {
 
   fb = inject(FormBuilder);
   protected voterService = inject(VoterService);
+  private dialogService = inject(DialogService);
 
   arr_subs = new Array<Subscription>();
 
@@ -97,7 +101,16 @@ export class IndexComponent implements OnInit, OnDestroy {
   }
 
   private findCoordinates() {
-
+    const ref = this.dialogService
+      .open(VoterFindCoordinatesComponent, {
+        data: {
+          id: this.voter.id,
+          name: getVoterFullname(this.voter)
+        },
+        header: 'Find and Set Voter Coordinates',
+        width: '80rem',
+        height: '55rem'
+      });
   }
 
 }
