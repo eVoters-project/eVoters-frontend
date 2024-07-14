@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { VoterColumns } from '../data/voter.column';
-import { Gender } from '../../../data';
 import { FormBuilder, FormGroup, NonNullableFormBuilder } from '@angular/forms';
 import { VoterApiService } from '../../../service/api';
 import { HttpUltils } from '../../../utils/http';
@@ -10,6 +9,7 @@ import { debounce, debounceTime, delay, Subscription, tap } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
 import { VoterFindCoordinatesComponent } from '../voter-find-coordinates/voter-find-coordinates.component';
 import { getVoterFullname } from './helpers';
+import { VoterEntryComponent } from '../voter-entry/voter-entry.component';
 
 @Component({
   selector: 'ev-voters-index',
@@ -19,13 +19,10 @@ import { getVoterFullname } from './helpers';
 })
 export class IndexComponent implements OnInit, OnDestroy {
 
-  fb = inject(FormBuilder);
   protected voterService = inject(VoterService);
   private dialogService = inject(DialogService);
 
   arr_subs = new Array<Subscription>();
-
-  genders = Gender;
 
   voters!: VoterInterface[];
   voter!: VoterInterface;
@@ -35,37 +32,13 @@ export class IndexComponent implements OnInit, OnDestroy {
   isLoading = false;
   addVoterSidebarVisible = false;
 
-  protected gridMenus = [
+  protected gridContextMenus = [
     {
-      label: 'Voter Actions',
-      items: [
-        {
-          label: 'Set Coordinates',
-          icon: 'pi pi-map-marker',
-          command: () => this.findCoordinates()
-        }
-      ]
+      label: 'Set Coordinates',
+      icon: 'pi pi-map-marker',
+      command: () => this.findCoordinates(this.voter)
     }
   ]
-
-  rf: FormGroup = this.fb.group({
-    firstname: 'Ranel',
-    middlename: 'L',
-    lastname: 'Parba',
-    nickname: '',
-    gender: '',
-    date_of_birth: '',
-    address: '',
-    precinct_no: '',
-    vin_no: '',
-    status: '',
-    category: '',
-    vote_group: '',
-    vote_type: '',
-    vote_status: '',
-    longitude: '',
-    latitude: '',
-  });
 
   constructor() {
     this.voterService.onInit();
@@ -100,17 +73,49 @@ export class IndexComponent implements OnInit, OnDestroy {
       })
   }
 
-  private findCoordinates() {
+  private findCoordinates(voter: VoterInterface) {
     const ref = this.dialogService
       .open(VoterFindCoordinatesComponent, {
         data: {
-          id: this.voter.id,
-          name: getVoterFullname(this.voter)
+          id: voter.id,
+          name: getVoterFullname(voter)
         },
         header: 'Find and Set Voter Coordinates',
         width: '80rem',
         height: '55rem'
       });
+  }
+
+  protected voterEntry() {
+    const ref = this.dialogService
+      .open(VoterEntryComponent, {
+        header: 'New Voter',
+        footer: ' ',
+        position: 'right',
+        modal: true,
+        width: '45rem',
+      })
+  }
+
+  protected getVoteStatus(status: string) {
+    switch (status.toUpperCase()) {
+      case 'ACTIVE':
+        return 'success';
+      default:
+        return 'warning'
+    }
+  }
+
+  protected getVoterLatLngInvalid(voter: VoterInterface) {
+
+    const { latitude, longitude } = voter;
+
+    if (!latitude && !longitude) {
+      return true;
+    }
+
+    return false
+
   }
 
 }

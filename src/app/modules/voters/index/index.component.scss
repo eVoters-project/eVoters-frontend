@@ -13,3 +13,15 @@
   margin: 0 0 0 auto;
 }
 
+
+.customModal {
+  max-height: 100%;
+}
+.customModal .ui-dialog-content {
+  height: 100%;
+}
+
+
+:host ::ng-deep .row-accessories {
+  background-color: #fff5f5 !important;
+}

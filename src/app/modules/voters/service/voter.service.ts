@@ -15,6 +15,9 @@ export class VoterService {
   private voterDataUpdateRequestSubject = new Subject<Partial<VoterInterface>>();
   private voterDataUpdatedSubject = new Subject<boolean>();
 
+  private voterDataRequestSaveSubject = new Subject<VoterInterface>();
+  private voterDataSavedSubject = new Subject<boolean>();
+
   constructor() { }
 
   onInit() {
@@ -25,9 +28,14 @@ export class VoterService {
     this.voterDataRequestSubject.next(null);
   }
 
+  saveData(voter: VoterInterface) {
+    this.voterDataRequestSaveSubject.next(voter);
+    return this.voterDataSavedSubject.asObservable();
+  }
+
   updateData(voter: Partial<VoterInterface>) {
     this.voterDataUpdateRequestSubject.next(voter);
-    return this.getVoterDataUpdated$;
+    return this.voterDataUpdatedSubject.asObservable();
   }
 
   setVoterDataSubscription() {
@@ -43,6 +51,19 @@ export class VoterService {
         if (res) {
           this.voterDataSubject.next(res.data);
         }
+      });
+
+    this.voterDataRequestSaveSubject
+      .pipe(
+        concatMap((voter) =>
+          this.voterApi.createVoter(voter)
+            .pipe(
+              take(1)
+            )
+        )
+      )
+      .subscribe(() => {
+        this.voterDataSavedSubject.next(true);
       });
 
     this.voterDataUpdateRequestSubject.pipe(
@@ -62,10 +83,6 @@ export class VoterService {
 
   get voterData$(): Observable<VoterInterface[]> {
     return this.voterDataSubject.asObservable();
-  }
-
-  get getVoterDataUpdated$(): Observable<boolean> {
-    return this.voterDataUpdatedSubject.asObservable();
   }
 
 }

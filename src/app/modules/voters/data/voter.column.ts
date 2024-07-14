@@ -21,11 +21,14 @@ export const VoterColumns: TableColumnInterface[] = [
     field: nameOf<VoterInterface>((obj) => obj.middlename)
   },
   {
+    header: 'Status',
+    field: nameOf<VoterInterface>((obj) => obj.vote_status)
+  },
+  {
     header: '',
     field: nameOf<VoterInterface>((obj) => obj.id)
   },
 ]
-
 
 export default function nameOf<T extends object>(nameExtractor: (obj: T) => any): keyof T {
   const proxy = new Proxy({} as T, {

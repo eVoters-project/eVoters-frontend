@@ -13,3 +13,12 @@ export function getVoterFullname(voter: VoterInterface) {
   return voter.firstname;
 
 }
+
+export function getVoterStatus(voter: VoterInterface) {
+  switch (voter.vote_status.toUpperCase()) {
+    case 'ACTIVE':
+      return 'success'
+    default:
+      return 'warning'
+  }
+}

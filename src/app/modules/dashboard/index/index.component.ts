@@ -9,6 +9,9 @@ import { MapConfig } from '../../../config';
 export class IndexComponent {
   title = 'Dashboard';
 
-  options = new MapConfig();
+  options = new MapConfig({
+    center: { lat: 10.3104108, lng: 123.8858503 },
+    zoom: 12.6
+  });
 
 }

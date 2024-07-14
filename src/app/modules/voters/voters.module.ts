@@ -6,6 +6,7 @@ import { IndexComponent } from './index/index.component';
 
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { CardModule } from 'primeng/card';
+import { ContextMenuModule } from 'primeng/contextmenu';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { SidebarModule } from 'primeng/sidebar';
@@ -14,14 +15,18 @@ import { DropdownModule } from 'primeng/dropdown';
 import { MenuModule } from 'primeng/menu';
 import { CalendarModule } from 'primeng/calendar';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { TagModule } from 'primeng/tag';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VoterFindCoordinatesComponent } from './voter-find-coordinates/voter-find-coordinates.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { VoterEntryComponent } from './voter-entry/voter-entry.component';
 
 @NgModule({
   declarations: [
     IndexComponent,
-    VoterFindCoordinatesComponent
+    VoterFindCoordinatesComponent,
+    VoterEntryComponent
   ],
   imports: [
     CommonModule,
@@ -30,6 +35,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
     VotersRoutingModule,
     GoogleMapsModule,
     CardModule,
+    ContextMenuModule,
     DynamicDialogModule,
     TableModule,
     ButtonModule,
@@ -38,7 +44,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
     InputTextModule,
     MenuModule,
     ScrollPanelModule,
-    SidebarModule
+    SidebarModule,
+    TagModule
   ]
 })
 export class VotersModule { }
