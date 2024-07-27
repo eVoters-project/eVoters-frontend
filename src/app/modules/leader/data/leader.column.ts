@@ -9,7 +9,7 @@ export const LeaderGridColumns: TableColumnInterface[] = [
   },
   {
     header: 'Type',
-    field: nameOf<LeaderInterface>((obj) => obj.voter_leader.description)
+    field: nameOf<LeaderInterface>((obj) => `${obj.voter_leader}.${obj.voter_leader.description}`)
   },
   {
     header: 'Status',

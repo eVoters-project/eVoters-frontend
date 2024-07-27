@@ -7,10 +7,27 @@ export class LeaderApiService {
 
   urlApi = environment.urlAPI;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getLeaders() {
+  getAll() {
+    return this.http.get(`${this.urlApi}/leader`)
+  }
 
+  getById(id: string) {
+    return this.http.get(`${this.urlApi}/leader/${id}`);
+  }
+
+  create(payload: any) {
+    return this.http.post(`${this.urlApi}/leader`, payload);
+  }
+
+  update(payload: any) {
+    const { id, ...rest } = payload;
+    return this.http.patch(`${this.urlApi}/leader/${id}`, rest);
+  }
+
+  delete(id: string) {
+    return this.http.delete(`${this.urlApi}/leader/${id}`);
   }
 
 }

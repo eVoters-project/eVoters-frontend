@@ -4,6 +4,10 @@ import { CommonModule } from '@angular/common';
 import { PartyRoutingModule } from './party-routing.module';
 import { IndexComponent } from './index/index.component';
 import { PartyEntryComponent } from './party-entry/party-entry.component';
+import { ButtonModule } from 'primeng/button';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { TableModule } from 'primeng/table';
+import { TagModule } from 'primeng/tag';
 
 
 @NgModule({
@@ -13,7 +17,15 @@ import { PartyEntryComponent } from './party-entry/party-entry.component';
   ],
   imports: [
     CommonModule,
-    PartyRoutingModule
+    PartyRoutingModule,
+
+    ButtonModule,
+    DynamicDialogModule,
+    TableModule,
+    TagModule
+  ],
+  providers: [
+    DialogService
   ]
 })
 export class PartyModule { }

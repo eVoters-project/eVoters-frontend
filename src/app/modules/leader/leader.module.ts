@@ -12,6 +12,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LeaderService } from './leader.service';
+import { LeaderApiService } from '../../service/api';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { LeaderService } from './leader.service';
     TagModule
   ],
   providers: [
+    LeaderApiService,
     LeaderService,
     DialogService
   ]
