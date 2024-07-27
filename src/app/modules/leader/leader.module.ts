@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { LeaderRoutingModule } from './leader-routing.module';
 import { IndexComponent } from './index/index.component';
+import { ButtonModule } from 'primeng/button';
 
 
 @NgModule({
@@ -11,7 +12,9 @@ import { IndexComponent } from './index/index.component';
   ],
   imports: [
     CommonModule,
-    LeaderRoutingModule
+    LeaderRoutingModule,
+
+    ButtonModule
   ]
 })
 export class LeaderModule { }
