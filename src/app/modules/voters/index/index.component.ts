@@ -10,12 +10,12 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { VoterFindCoordinatesComponent } from '../voter-find-coordinates/voter-find-coordinates.component';
 import { getVoterFullname } from './helpers';
 import { VoterEntryComponent } from '../voter-entry/voter-entry.component';
+import { PrimeIcons } from 'primeng/api';
 
 @Component({
   selector: 'ev-voters-index',
   templateUrl: './index.component.html',
-  styleUrl: './index.component.scss',
-  providers: [VoterService, VoterApiService, DialogService]
+  styleUrl: './index.component.scss'
 })
 export class IndexComponent implements OnInit, OnDestroy {
 
@@ -37,6 +37,11 @@ export class IndexComponent implements OnInit, OnDestroy {
       label: 'Set Coordinates',
       icon: 'pi pi-map-marker',
       command: () => this.findCoordinates(this.voter)
+    },
+    {
+      label: 'Delete',
+      icon: PrimeIcons.TRASH,
+      command: () => this.voterDelete()
     }
   ]
 
@@ -92,9 +97,15 @@ export class IndexComponent implements OnInit, OnDestroy {
         header: 'New Voter',
         footer: ' ',
         position: 'right',
+        contentStyle: { overflow: 'auto' },
         modal: true,
         width: '45rem',
+        height: 'calc(100vh - 100px)'
       })
+  }
+
+  private voterDelete() {
+
   }
 
   protected getVoteStatus(status: string) {

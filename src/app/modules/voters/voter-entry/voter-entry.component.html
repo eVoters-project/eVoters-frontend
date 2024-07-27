@@ -1,5 +1,4 @@
 <p-scrollPanel class="flex flex-column gap-1" [formGroup]="rf">
-
   <h4>Person Profile Info.</h4>
 
   <div class="flex flex-column gap-2">
@@ -23,7 +22,7 @@
 
     <div class="flex flex-auto flex-column gap-2">
         <label for="gender">Gender</label>
-        <p-dropdown [options]="genders" [style]="{ width: '100%' }" formControlName="gender"/>
+        <p-dropdown id="gender" appendTo="body" [options]="genders" [style]="{ width: '100%' }" formControlName="gender"/>
     </div>
   </div>
 
@@ -64,17 +63,17 @@
   <div class="flex flex-column gap-2">
     <label for="votertype">Type</label>
     <!-- <input id="votertype" pInputText type="text" class="outline-none" /> -->
-    <p-dropdown id="votertype" [options]="voterStatus" [style]="{ 'width': '100%', 'minWidth': '50px' }" formControlName="vote_type"/>
+    <p-dropdown id="votertype" appendTo="body" [options]="[]" [style]="{ 'width': '100%', 'minWidth': '50px' }" formControlName="vote_type"/>
   </div>
 
   <div class="flex flex-column gap-2">
     <label for="voterstatus">Status</label>
-    <input id="voterstatus" pInputText type="text" class="outline-none" formControlName="vote_status" />
+    <p-dropdown id="voterstatus" appendTo="body" panelStyleClass="overlayTop" [options]="status" [style]="{ 'width': '100%' }" formControlName="vote_status" />
   </div>
 
 </p-scrollPanel>
 
-<div class="flex justify-content-start gap-2">
+<div class="flex justify-content-start">
   <button
     pButton
     pRipple

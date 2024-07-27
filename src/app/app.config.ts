@@ -9,6 +9,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { VoterApiService, VoterMapLocationApiService } from './service/api';
 import { MapService, VoterMapLocationService } from './service/map';
 import { BaseService } from './service';
+import { DialogService } from 'primeng/dynamicdialog';
 
 export const appConfig: ApplicationConfig = {
   providers: [

@@ -14,7 +14,7 @@ export const routes: Routes = [
     title: 'E-Voters | Home',
     children: [
       {
-        path: 'campaign',
+        path: 'campaigns',
         loadChildren: () => import('./modules/campaign/campaign.module').then(m => m.CampaignModule),
         title: 'E-Voters | Campaign'
       },
@@ -24,12 +24,12 @@ export const routes: Routes = [
         title: 'E-Voters | Dashboard'
       },
       {
-        path: 'leader',
+        path: 'leaders',
         loadChildren: () => import('./modules/leader/leader.module').then(m => m.LeaderModule),
         title: 'E-Voters | Leader'
       },
       {
-        path: 'party',
+        path: 'parties',
         loadChildren: () => import('./modules/party/party.module').then(m => m.PartyModule),
         title: 'E-Voters | Party'
       },
@@ -39,12 +39,12 @@ export const routes: Routes = [
         title: 'E-Voters | Settings'
       },
       {
-        path: 'straw-vote',
+        path: 'straw-votes',
         loadChildren: () => import('./modules/straw-vote/straw-vote.module').then(m => m.StrawVoteModule),
         title: 'E-Voters | Straw-Vote'
       },
       {
-        path: 'vote-count',
+        path: 'vote-counts',
         loadChildren: () => import('./modules/vote-count/vote-count.module').then(m => m.VoteCountModule),
         title: 'E-Voters | Vote-Count'
       },

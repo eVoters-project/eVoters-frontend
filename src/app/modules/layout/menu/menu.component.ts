@@ -26,11 +26,11 @@ export class MenuComponent implements OnInit {
           { label: 'Dashboard', icon: 'pi pi-gauge', routerLink: ['/dashboard'] },
           { label: 'Statistics', icon: 'pi pi-gauge', routerLink: ['/statistics'] },
           { label: 'Voters', icon: 'pi pi-slack', routerLink: ['/voters'] },
-          { label: 'Leaders', icon: 'pi pi-crown', routerLink: ['/leader'] },
-          { label: 'Party', icon: 'pi pi-users', routerLink: ['party'] },
-          { label: 'Straw Vote', icon: 'pi pi-lightbulb', routerLink: ['straw-vote'] },
-          { label: 'Vote Count', icon: 'pi pi-sort-numeric-down', routerLink: ['/vote-count'] },
-          { label: 'Campaign', icon: 'pi pi-chart-bar', routerLink: ['/campaign'] },
+          { label: 'Leaders', icon: 'pi pi-crown', routerLink: ['/leaders'] },
+          { label: 'Party', icon: 'pi pi-users', routerLink: ['parties'] },
+          { label: 'Straw Vote', icon: 'pi pi-lightbulb', routerLink: ['straw-votes'] },
+          { label: 'Vote Count', icon: 'pi pi-sort-numeric-down', routerLink: ['/vote-counts'] },
+          { label: 'Campaign', icon: 'pi pi-chart-bar', routerLink: ['/campaigns'] },
           { label: 'Settings', icon: 'pi pi-cog', routerLink: ['/settings'] },
           { label: 'Logout', icon: 'pi pi-sign-out', routerLink: [''] }
         ]

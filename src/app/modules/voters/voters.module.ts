@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { VotersRoutingModule } from './voters-routing.module';
 import { IndexComponent } from './index/index.component';
 
-import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { CardModule } from 'primeng/card';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { TableModule } from 'primeng/table';
@@ -21,6 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VoterFindCoordinatesComponent } from './voter-find-coordinates/voter-find-coordinates.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { VoterEntryComponent } from './voter-entry/voter-entry.component';
+import { VoterService } from './service/voter.service';
+import { VoterApiService } from '../../service/api';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,11 @@ import { VoterEntryComponent } from './voter-entry/voter-entry.component';
     ScrollPanelModule,
     SidebarModule,
     TagModule
+  ],
+  providers: [
+    VoterService, 
+    VoterApiService,
+    DialogService
   ]
 })
 export class VotersModule { }

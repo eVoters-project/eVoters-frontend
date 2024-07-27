@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Status } from '../../../data';
 
 @Component({
   selector: 'app-leader-entry',
@@ -7,7 +8,8 @@ import { Component } from '@angular/core';
 })
 export class LeaderEntryComponent {
   isLoading = false;
-
+  status = Status;
+  
   leaderSave() {
     
   }

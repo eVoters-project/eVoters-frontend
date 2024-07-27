@@ -31,6 +31,7 @@ export class IndexComponent {
         position: 'right',
         modal: true,
         width: '45rem',
+        height: '45rem'
       });
   }
 }

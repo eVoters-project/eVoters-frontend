@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Gender, VoterStatus } from '../../../data';
+import { Gender, Status, VoterStatus } from '../../../data';
 import { VoterService } from '../service/voter.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -20,7 +20,7 @@ export class VoterEntryComponent {
 
   // data
   genders = Gender;
-  voterStatus = VoterStatus;
+  status = Status;
 
   // forms
   rf: FormGroup = this.fb.group({
