@@ -1,3 +1,4 @@
+import { nameOf } from "../../../helpers/common.helpers";
 import { VoterInterface } from "../../../interface";
 import { TableColumnInterface } from "../../../shared/interface";
 
@@ -29,13 +30,3 @@ export const VoterColumns: TableColumnInterface[] = [
     field: nameOf<VoterInterface>((obj) => obj.id)
   },
 ]
-
-export default function nameOf<T extends object>(nameExtractor: (obj: T) => any): keyof T {
-  const proxy = new Proxy({} as T, {
-    get(target, prop: string | symbol) {
-      return prop;
-    },
-  });
-
-  return nameExtractor(proxy);
-}

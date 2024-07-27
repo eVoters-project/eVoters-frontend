@@ -1,1 +1,29 @@
-<p>leader-entry works!</p>
+<p-scrollPanel class="flex flex-column gap-1">
+
+    <h4>Leader Info.</h4>
+
+    <div class="flex flex-auto flex-column gap-2">
+        <label for="gender">Voter</label>
+        <p-dropdown [options]="[]" [style]="{ width: '100%' }"/>
+    </div>
+
+    <div class="flex flex-auto flex-column gap-2">
+        <label for="gender">Type</label>
+        <p-dropdown [options]="[]" [style]="{ width: '100%' }"/>
+    </div>
+
+    <div class="flex flex-auto flex-column gap-2">
+        <label for="gender">Status</label>
+        <p-dropdown [options]="[]" [style]="{ width: '100%' }"/>
+    </div>
+</p-scrollPanel>
+
+<div class="flex justify-content-start gap-2">
+    <button
+      pButton
+      pRipple
+      [loading]="isLoading"
+      label="Save"
+      (click)="leaderSave()">
+    </button>
+  </div>

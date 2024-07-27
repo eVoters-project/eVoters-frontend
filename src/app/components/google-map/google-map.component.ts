@@ -3,8 +3,8 @@ import { MapService } from '../../service/map/map.service';
 import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { Subscription } from 'rxjs';
 import { VoterMapLocationService } from '../../service/map';
-import { GoogleMapHelpers } from '../../helpers/map/google-map.helpers';
 import { MapMarkerConfig, VoterLocationMapMarkerConfig } from '../../config';
+import { setVoterLocationMapMarkers } from '../../helpers';
 
 @Component({
   selector: 'app-google-map',
@@ -49,7 +49,7 @@ export class GoogleMapComponent implements OnInit {
       .subscribe((data) => {
         this.isLoading = true;
 
-        this.voterCoordinates = GoogleMapHelpers.setVoterLocationMapMarkers(data);
+        this.voterCoordinates = setVoterLocationMapMarkers(data);
 
         this.isLoading = false;
       });
