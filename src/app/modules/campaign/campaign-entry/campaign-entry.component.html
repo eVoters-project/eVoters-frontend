@@ -8,7 +8,7 @@
 
   <div class="flex flex-auto flex-column gap-2">
     <label for="when">When</label>
-    <p-calendar id="when" [showIcon]="true" class="outline-none" [inputStyle]="{ width: '100%'}" />
+    <p-calendar id="when" appendTo="body" [showIcon]="true" [showTime]="true" hourFormat="12" class="outline-none" [inputStyle]="{ width: '100%'}" />
   </div>
 
   <div class="flex flex-column gap-2">
