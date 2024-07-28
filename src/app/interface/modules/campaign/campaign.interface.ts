@@ -1,9 +1,10 @@
 export interface CampaignInterface {
   id: string;
-  what: string;
+  code: string;
   when: Date;
+  what: string;
   where: string;
   remarks: string;
   status: string;
-  attendee: number;
+  attendees: number;
 }

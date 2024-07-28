@@ -1,18 +1,19 @@
 import { nameOf } from "../../helpers";
+import { ResponsePartyInterface } from "../../interface";
 import { PartyInterface } from "../../interface/modules/party/party.interface";
 import { TableColumnInterface } from "../../shared/interface";
 
 export const PartyGridColumns: TableColumnInterface[] = [
   {
     header: 'Name',
-    field: nameOf<PartyInterface>((obj) => obj.name)
+    field: nameOf<ResponsePartyInterface>((obj) => obj.name)
   },
   {
-    header: 'Description',
-    field: nameOf<PartyInterface>((obj) => obj.description)
+    header: 'Leader',
+    field: nameOf<ResponsePartyInterface>((obj) => obj.leader)
   },
   {
-    header: 'status',
-    field: nameOf<PartyInterface>((obj) => obj.status)
+    header: 'Status',
+    field: nameOf<ResponsePartyInterface>((obj) => obj.status)
   }
 ]

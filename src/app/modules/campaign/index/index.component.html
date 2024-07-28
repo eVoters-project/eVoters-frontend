@@ -1,20 +1,75 @@
 <div class="card">
-  <h3 class="title">{{title}}</h3>
+  <div class="title-bar">
+    <h3 class="title">Campaigns</h3>
+    <div class="title-bar-menu">
+        <p-button label="Add" (onClick)="campaignEntry()"/>
+    </div>
+  </div>
 
-  <p-table [columns]="cols" [value]="campaign" [tableStyle]="{ 'min-width': '50rem' }">
-    <ng-template pTemplate="header" let-columns>
-        <tr>
-            <th *ngFor="let col of columns">
-                {{ col.header }}
-            </th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-        <tr>
-            <td *ngFor="let col of columns">
-                {{ rowData[col.field] }}
-            </td>
-        </tr>
-    </ng-template>
-</p-table>
+  <br />
+  <br />
+
+  <p-table
+      [columns]="cols"
+      [value]="campaigns"
+      [rowsPerPageOptions]="[10, 20]"
+      [loading]="isLoading"
+      [rowHover]="true"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      styleClass="p-datatable-striped"
+      >
+        <ng-template pTemplate="caption">
+          <div class="flex align-items-center justify-content-between">
+            Campaign List
+            <p-button icon="pi pi-refresh" (onClick)="campaignService.requestData();"/>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+              @for (col of columns; track $index) {
+                @switch (col.field) {
+                  @case ('attendees') {
+                    <th [style]="{ width: col.width }">
+                      {{ col.header }}
+                    </th>
+                  }
+                  @default {
+                    <th>
+                      {{ col.header }}
+                    </th>
+                  }
+                 }
+              }
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+                @for (col of columns; track $index) {
+                  <td>
+                    @switch (col.field) {
+                      @case ('id') {
+
+                      }
+                      @case ('when') {
+                        {{ rowData[col.field] | date: 'MM/dd/yyyy hh:mm:ss aa' }}
+                      }
+                      @case ('status') {
+                        <p-tag [value]="rowData[col.field]" />
+                      }
+                      @case ('attendees') {
+                        <div [ngClass]="{ 'no-attendee': rowData[col.field] < 1, 'low-attendee': rowData[col.field] >= 1 && rowData[col.field] < 10, 'high-attendee':  rowData[col.field] > 10 }">
+                          {{ rowData[col.field] }}
+                        </div>
+                      }
+                      @default {
+                        {{ rowData[col.field] }}
+                      }
+                    }
+                  </td>
+                }
+            </tr>
+        </ng-template>
+    </p-table>
+
 </div>
+

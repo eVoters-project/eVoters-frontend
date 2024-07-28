@@ -1,18 +1,19 @@
 import { nameOf } from "../../../helpers";
+import { ResponseLeaderInterface } from "../../../interface";
 import { LeaderInterface } from "../../../interface/modules/leader/leader.interface";
 import { TableColumnInterface } from "../../../shared/interface";
 
 export const LeaderGridColumns: TableColumnInterface[] = [
   {
     header: 'Leader',
-    field: nameOf<LeaderInterface>((obj) => `${obj.voter.firstname} ${obj.voter.lastname}`)
+    field: nameOf<ResponseLeaderInterface>((obj) => obj.voter)
   },
   {
     header: 'Type',
-    field: nameOf<LeaderInterface>((obj) => `${obj.voter_leader}.${obj.voter_leader.description}`)
+    field: nameOf<ResponseLeaderInterface>((obj) => obj.voter_leader)
   },
   {
     header: 'Status',
-    field: nameOf<LeaderInterface>((obj) => obj.status)
+    field: nameOf<ResponseLeaderInterface>((obj) => obj.status)
   }
 ]

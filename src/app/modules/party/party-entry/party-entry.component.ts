@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Status } from '../../../data';
 
 @Component({
   selector: 'app-party-entry',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrl: './party-entry.component.scss'
 })
 export class PartyEntryComponent {
+  isLoading = false;
+  status = Status;
 
+  partySave() {
+
+  }
 }

@@ -1,25 +1,27 @@
+import { nameOf } from "../../../helpers";
+import { ResponseCampaignInterface } from "../../../interface";
 import { TableColumnInterface } from "../../../shared/interface";
-import { CampaignInterface } from "./interface";
 
 export const CampaignColumns: TableColumnInterface[] = [
   {
     header: 'What',
-    field: (element: CampaignInterface) => element.what
+    field: nameOf<ResponseCampaignInterface>((obj) => obj.what)
   },
   {
-    header: 'What',
-    field: (element: CampaignInterface) => element.when
+    header: 'When',
+    field: nameOf<ResponseCampaignInterface>((obj) => obj.when)
   },
   {
-    header: 'What',
-    field: (element: CampaignInterface) => element.where
+    header: 'Where',
+    field: nameOf<ResponseCampaignInterface>((obj) => obj.where)
   },
   {
     header: 'Remarks',
-    field: (element: CampaignInterface) => element.remarks
+    field: nameOf<ResponseCampaignInterface>((obj) => obj.remarks)
   },
   {
-    header: 'Attendee',
-    field: (element: CampaignInterface) => element.attendee
+    header: 'Attendees',
+    field: nameOf<ResponseCampaignInterface>((obj) => obj.attendees),
+    width: '150px'
   }
 ]

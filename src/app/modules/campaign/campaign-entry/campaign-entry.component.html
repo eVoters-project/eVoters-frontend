@@ -1,24 +1,24 @@
 <p-scrollPanel class="flex flex-column gap-1 flex-auto">
-  <h4>Party Info.</h4>
+  <h4>Campaign Info.</h4>
 
   <div class="flex flex-column gap-2">
-    <label for="firstname">Name</label>
-    <input id="firstname" pInputText type="text" class="outline-none" />
-  </div>
-
-  <div class="flex flex-column gap-2">
-    <label for="firstname">Description</label>
+    <label for="firstname">What</label>
     <textarea pInputTextarea rows="3"></textarea>
   </div>
 
   <div class="flex flex-auto flex-column gap-2">
-    <label for="gender">Leader</label>
-    <p-dropdown appendTo="body" [options]="[]" [style]="{ width: '100%' }"/>
+    <label for="when">When</label>
+    <p-calendar id="when" [showIcon]="true" class="outline-none" [inputStyle]="{ width: '100%'}" />
+  </div>
+
+  <div class="flex flex-column gap-2">
+    <label for="firstname">Where</label>
+    <textarea pInputTextarea rows="3"></textarea>
   </div>
 
   <div class="flex flex-column gap-2">
     <label for="firstname">Remarks</label>
-    <textarea pInputTextarea rows="3"></textarea>
+    <textarea pInputTextarea rows="5"></textarea>
   </div>
 
   <div class="flex flex-auto flex-column gap-2">
@@ -33,6 +33,6 @@
     pRipple
     [loading]="isLoading"
     label="Save"
-    (click)="partySave()">
+    (click)="campaignSave()">
   </button>
 </div>
