@@ -6,13 +6,17 @@ import { IndexComponent } from './index/index.component';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
+import { ToastModule } from 'primeng/toast';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { LeaderEntryComponent } from './leader-entry/leader-entry.component';
 import { DropdownModule } from 'primeng/dropdown';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LeaderService } from './leader.service';
 import { LeaderApiService } from '../../service/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ContextMenuModule } from 'primeng/contextmenu';
 
 
 @NgModule({
@@ -28,15 +32,20 @@ import { LeaderApiService } from '../../service/api';
     DynamicDialogModule,
 
     ButtonModule,
+    ConfirmDialogModule,
+    ContextMenuModule,
     DropdownModule,
     ScrollPanelModule,
     TableModule,
-    TagModule
+    TagModule,
+    ToastModule,
   ],
   providers: [
     LeaderApiService,
     LeaderService,
-    DialogService
+    DialogService,
+    MessageService,
+    ConfirmationService
   ]
 })
 export class LeaderModule { }

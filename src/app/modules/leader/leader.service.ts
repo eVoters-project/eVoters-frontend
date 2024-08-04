@@ -18,6 +18,9 @@ export class LeaderService {
   private leaderDataRequestSaveSubject = new Subject<LeaderInterface>();
   private leaderDataSavedSubject = new Subject<boolean>();
 
+  private leaderDataRequestDeleteSubject = new Subject<string>();
+  private leaderDataDeletedSubject = new Subject<boolean>();
+
   constructor() { }
 
   onInit() {
@@ -36,6 +39,11 @@ export class LeaderService {
   updateData(leader: Partial<LeaderInterface>) {
     this.leaderDataUpdateRequestSubject.next(leader);
     return this.leaderDataUpdatedSubject.asObservable();
+  }
+
+  deleteData(id: string) {
+    this.leaderDataRequestDeleteSubject.next(id);
+    return this.leaderDataDeletedSubject.asObservable();
   }
 
   setLeaderDataSubscription() {
@@ -73,12 +81,24 @@ export class LeaderService {
             take(1)
           )
       )
-    )
-      .subscribe((res: any) => {
-        if (res) {
-          this.leaderDataUpdatedSubject.next(true);
-        }
-      });
+    ).subscribe((res: any) => {
+      if (res) {
+        this.leaderDataUpdatedSubject.next(true);
+      }
+    });
+
+    this.leaderDataRequestDeleteSubject.pipe(
+      concatMap((id) =>
+        this.leaderApi.delete(id)
+          .pipe(
+            take(1)
+          )
+      )
+    ).subscribe((res: any) => {
+      if (res) {
+        this.leaderDataDeletedSubject.next(true);
+      }
+    });
   }
 
   get leaderData$(): Observable<LeaderInterface[]> {

@@ -1,3 +1,5 @@
+<p-confirmDialog />
+<p-toast />
 <div class="card">
   <div class="title-bar">
     <h3 class="title">Leaders</h3>
@@ -15,13 +17,15 @@
       [rowsPerPageOptions]="[10, 20]"
       [loading]="isLoading"
       [rowHover]="true"
+      [contextMenu]="cmLeader"
+      [(contextMenuSelection)]="leader"
       [tableStyle]="{ 'min-width': '50rem' }"
       styleClass="p-datatable-striped"
       >
         <ng-template pTemplate="caption">
           <div class="flex align-items-center justify-content-between">
             Leader List
-            <p-button icon="pi pi-refresh"/>
+            <p-button icon="pi pi-refresh" (onClick)="leaderService.requestData();"/>
           </div>
         </ng-template>
         <ng-template pTemplate="header" let-columns>
@@ -32,7 +36,7 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columns">
-            <tr>
+            <tr [pContextMenuRow]="rowData">
                 @for (col of columns; track $index) {
                   <td>
                     @switch (col.field) {
@@ -52,3 +56,6 @@
     </p-table>
 
 </div>
+
+
+<p-contextMenu #cmLeader [model]="gridContextMenus"></p-contextMenu>

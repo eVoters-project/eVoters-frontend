@@ -1,28 +1,54 @@
-<p-scrollPanel class="flex flex-column gap-1 flex-auto">
-    <h4>Leader Info.</h4>
-    
-    <div class="flex flex-auto flex-column gap-2">
-        <label for="gender">Voter</label>
-        <p-dropdown appendTo="body" [options]="[]" [style]="{ width: '100%' }"/>
-    </div>
-
-    <div class="flex flex-auto flex-column gap-2">
-        <label for="gender">Type</label>
-        <p-dropdown appendTo="body" [options]="[]" [style]="{ width: '100%' }"/>
-    </div>
-
-    <div class="flex flex-auto flex-column gap-2">
-        <label for="gender">Status</label>
-        <p-dropdown appendTo="body" [options]="status" [style]="{ width: '100%' }"/>
-    </div>
-</p-scrollPanel>
-
-<div class="flex justify-content-start gap-2">
-    <button
-      pButton
-      pRipple
-      [loading]="isLoading"
-      label="Save"
-      (click)="leaderSave()">
-    </button>
+@if (isLoading) {
+  <div class="loading">
+    <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+    <span>Please wait...</span>
   </div>
+}
+@else {
+  <p-toast />
+  <p-scrollPanel class="flex flex-column gap-1 flex-auto" [formGroup]="rf">
+      <h4>Leader Info.</h4>
+
+      <div class="flex flex-auto flex-column gap-2">
+          <label for="gender">Voter</label>
+          <p-dropdown
+            appendTo="body"
+            [options]="voters"
+            optionLabel="name"
+            [showClear]="true"
+            [style]="{ width: '100%' }"
+            formControlName="voter" />
+      </div>
+
+      <div class="flex flex-auto flex-column gap-2">
+          <label for="gender">Type</label>
+          <p-dropdown
+            appendTo="body"
+            [options]="leader_types"
+            optionLabel="description"
+            [style]="{ width: '100%' }"
+            [showClear]="true"
+            formControlName="voter_leader" />
+      </div>
+
+      <div class="flex flex-auto flex-column gap-2">
+          <label for="gender">Status</label>
+          <p-dropdown
+            appendTo="body"
+            [options]="status"
+            [style]="{ width: '100%' }"
+            formControlName="status"
+            [showClear]="true" />
+      </div>
+  </p-scrollPanel>
+
+  <div class="flex justify-content-start gap-2">
+      <button
+        pButton
+        pRipple
+        [loading]="isSaving"
+        label="Save"
+        (click)="leaderSave()">
+      </button>
+    </div>
+}
