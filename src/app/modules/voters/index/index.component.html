@@ -1,5 +1,5 @@
-<!-- <div>Voters Works!</div> -->
-
+<p-confirmDialog />
+<p-toast />
 <div class="card">
 
     <div class="title-bar">
@@ -15,7 +15,9 @@
     <p-table
       [columns]="cols"
       [value]="voters"
-      [rowsPerPageOptions]="[10, 20]"
+      [rowsPerPageOptions]="[5, 10, 15]"
+      [rows]="10"
+      [paginator]="true"
       [loading]="isLoading"
       [rowHover]="true"
       [contextMenu]="cmVoter"

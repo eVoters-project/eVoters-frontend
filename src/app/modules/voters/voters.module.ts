@@ -23,6 +23,9 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { VoterEntryComponent } from './voter-entry/voter-entry.component';
 import { VoterService } from './service/voter.service';
 import { VoterApiService } from '../../service/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,7 @@ import { VoterApiService } from '../../service/api';
     GoogleMapsModule,
     CardModule,
     ContextMenuModule,
+    ConfirmDialogModule,
     DynamicDialogModule,
     TableModule,
     ButtonModule,
@@ -45,14 +49,17 @@ import { VoterApiService } from '../../service/api';
     DropdownModule,
     InputTextModule,
     MenuModule,
+    ToastModule,
     ScrollPanelModule,
     SidebarModule,
     TagModule
   ],
   providers: [
-    VoterService, 
+    VoterService,
     VoterApiService,
-    DialogService
+    DialogService,
+    ConfirmationService,
+    MessageService
   ]
 })
 export class VotersModule { }

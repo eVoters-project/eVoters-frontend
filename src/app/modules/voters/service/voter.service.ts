@@ -18,6 +18,9 @@ export class VoterService {
   private voterDataRequestSaveSubject = new Subject<VoterInterface>();
   private voterDataSavedSubject = new Subject<boolean>();
 
+  private voterDataRequestDeleteSubject = new Subject<string>();
+  private voterDataDeletedSubject = new Subject<boolean>();
+
   constructor() { }
 
   onInit() {
@@ -36,6 +39,11 @@ export class VoterService {
   updateData(voter: Partial<VoterInterface>) {
     this.voterDataUpdateRequestSubject.next(voter);
     return this.voterDataUpdatedSubject.asObservable();
+  }
+
+  deleteData(id: string) {
+    this.voterDataRequestDeleteSubject.next(id);
+    return this.voterDataDeletedSubject.asObservable();
   }
 
   setVoterDataSubscription() {
@@ -79,6 +87,19 @@ export class VoterService {
           this.voterDataUpdatedSubject.next(true);
         }
       })
+
+    this.voterDataRequestDeleteSubject.pipe(
+      concatMap((id) =>
+        this.voterApi.deleteVoter(id)
+          .pipe(
+            take(1)
+          )
+      )
+    ).subscribe((res: any) => {
+      if (res) {
+        this.voterDataDeletedSubject.next(true);
+      }
+    });
   }
 
   get voterData$(): Observable<VoterInterface[]> {

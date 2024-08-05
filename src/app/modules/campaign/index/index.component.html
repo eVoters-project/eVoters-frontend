@@ -1,3 +1,5 @@
+<p-confirmDialog />
+<p-toast />
 <div class="card">
   <div class="title-bar">
     <h3 class="title">Campaigns</h3>
@@ -12,9 +14,13 @@
   <p-table
       [columns]="cols"
       [value]="campaigns"
-      [rowsPerPageOptions]="[10, 20]"
+      [rowsPerPageOptions]="[5, 10, 15]"
+      [rows]="10"
+      [paginator]="true"
       [loading]="isLoading"
       [rowHover]="true"
+      [contextMenu]="cmCampaign"
+      [(contextMenuSelection)]="campaign"
       [tableStyle]="{ 'min-width': '50rem' }"
       styleClass="p-datatable-striped"
       >
@@ -43,7 +49,7 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columns">
-            <tr>
+            <tr [pContextMenuRow]="rowData">
                 @for (col of columns; track $index) {
                   <td>
                     @switch (col.field) {
@@ -73,3 +79,4 @@
 
 </div>
 
+<p-contextMenu #cmCampaign [model]="gridContextMenus"></p-contextMenu>

@@ -5,12 +5,12 @@ import { VoterApiService } from '../../../service/api';
 import { HttpUltils } from '../../../utils/http';
 import { VoterInterface } from '../../../interface';
 import { VoterService } from '../service/voter.service';
-import { debounce, debounceTime, delay, Subscription, tap } from 'rxjs';
+import { debounce, debounceTime, delay, Subscription, take, tap } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
 import { VoterFindCoordinatesComponent } from '../voter-find-coordinates/voter-find-coordinates.component';
 import { getVoterFullname } from './helpers';
 import { VoterEntryComponent } from '../voter-entry/voter-entry.component';
-import { PrimeIcons } from 'primeng/api';
+import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
 
 @Component({
   selector: 'ev-voters-index',
@@ -21,6 +21,8 @@ export class IndexComponent implements OnInit, OnDestroy {
 
   protected voterService = inject(VoterService);
   private dialogService = inject(DialogService);
+  private confirmationService = inject(ConfirmationService);
+  private messageService = inject(MessageService);
 
   arr_subs = new Array<Subscription>();
 
@@ -105,7 +107,28 @@ export class IndexComponent implements OnInit, OnDestroy {
   }
 
   private voterDelete() {
-
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to proceed?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      acceptIcon: "none",
+      rejectIcon: "none",
+      rejectButtonStyleClass: "p-button-text",
+      accept: () => {
+        const { id } = this.voter;
+        this.voterService.deleteData(id)
+          .pipe(take(1))
+          .subscribe({
+            next: () => {
+              this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Voter Deleted!', life: 2000 });
+              this.voterService.requestData();
+            }
+          })
+      },
+      reject: () => {
+        // this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+      }
+    });
   }
 
   protected getVoteStatus(status: string) {

@@ -1,29 +1,54 @@
-<p-scrollPanel class="flex flex-column gap-1 flex-auto">
+<p-toast />
+<p-scrollPanel class="flex flex-column gap-1 flex-auto" [formGroup]="rf">
   <h4>Campaign Info.</h4>
 
   <div class="flex flex-column gap-2">
     <label for="firstname">What</label>
-    <textarea pInputTextarea rows="3"></textarea>
+    <textarea
+      pInputTextarea
+      rows="3"
+      formControlName="what">
+    </textarea>
   </div>
 
   <div class="flex flex-auto flex-column gap-2">
     <label for="when">When</label>
-    <p-calendar id="when" appendTo="body" [showIcon]="true" [showTime]="true" hourFormat="12" class="outline-none" [inputStyle]="{ width: '100%'}" />
+    <p-calendar
+      id="when"
+      appendTo="body"
+      [showIcon]="true"
+      [showTime]="true"
+      hourFormat="12"
+      formControlName="when"
+      class="outline-none"
+      [inputStyle]="{ width: '100%'}" />
   </div>
 
   <div class="flex flex-column gap-2">
     <label for="firstname">Where</label>
-    <textarea pInputTextarea rows="3"></textarea>
+    <textarea
+      pInputTextarea
+      rows="3"
+      formControlName="where" >
+    </textarea>
   </div>
 
   <div class="flex flex-column gap-2">
     <label for="firstname">Remarks</label>
-    <textarea pInputTextarea rows="5"></textarea>
+    <textarea
+      pInputTextarea
+      rows="5"
+      formControlName="remarks">
+    </textarea>
   </div>
 
   <div class="flex flex-auto flex-column gap-2">
       <label for="gender">Status</label>
-      <p-dropdown appendTo="body" [options]="status" [style]="{ width: '100%' }"/>
+      <p-dropdown
+        appendTo="body"
+        [options]="status"
+        [style]="{ width: '100%' }"
+        formControlName="status" />
   </div>
 </p-scrollPanel>
 
@@ -31,7 +56,7 @@
   <button
     pButton
     pRipple
-    [loading]="isLoading"
+    [loading]="isSaving"
     label="Save"
     (click)="campaignSave()">
   </button>

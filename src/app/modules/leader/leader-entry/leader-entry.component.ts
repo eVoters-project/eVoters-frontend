@@ -35,11 +35,10 @@ export class LeaderEntryComponent implements OnInit {
   voterLeaderApi = inject(VoterLeaderApiService);
   dialogRef = inject(DynamicDialogRef);
   messageService = inject(MessageService);
-  protected fb = inject(FormBuilder);
 
+  protected fb = inject(FormBuilder);
   protected voters: VoterInterface[] = [];
   protected leader_types: LeaderTypeInterface[] = [];
-
   protected rf = this.fb.group({
     voter: this.fb.control(null, { validators: [Validators.required] }),
     voter_leader: this.fb.control(null, { validators: [Validators.required] }),

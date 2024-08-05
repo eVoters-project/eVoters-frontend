@@ -18,6 +18,9 @@ export class CampaignService {
   private campaignDataRequestSaveSubject = new Subject<CampaignInterface>();
   private campaignDataSavedSubject = new Subject<boolean>();
 
+  private leaderDataRequestDeleteSubject = new Subject<string>();
+  private leaderDataDeletedSubject = new Subject<boolean>();
+
   onInit() {
     this.setCampaignDataSubscription();
   }
@@ -34,6 +37,11 @@ export class CampaignService {
   updateData(leader: Partial<CampaignInterface>) {
     this.campaignDataUpdateRequestSubject.next(leader);
     return this.campaignDataUpdatedSubject.asObservable();
+  }
+
+  deleteData(id: string) {
+    this.leaderDataRequestDeleteSubject.next(id);
+    return this.leaderDataDeletedSubject.asObservable();
   }
 
   setCampaignDataSubscription() {
@@ -77,6 +85,19 @@ export class CampaignService {
           this.campaignDataUpdatedSubject.next(true);
         }
       });
+
+    this.leaderDataRequestDeleteSubject.pipe(
+      concatMap((id) =>
+        this.campaignApi.delete(id)
+          .pipe(
+            take(1)
+          )
+      )
+    ).subscribe((res: any) => {
+      if (res) {
+        this.leaderDataDeletedSubject.next(true);
+      }
+    });
   }
 
   get campaignData$(): Observable<CampaignInterface[]> {

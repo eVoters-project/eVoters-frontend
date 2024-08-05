@@ -16,6 +16,11 @@ import { CampaignService } from './campaign.service';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CalendarModule } from 'primeng/calendar';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { ContextMenuModule } from 'primeng/contextmenu';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 
 @NgModule({
@@ -26,22 +31,29 @@ import { CalendarModule } from 'primeng/calendar';
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     CampaignRoutingModule,
 
     ButtonModule,
     CalendarModule,
     CardModule,
+    ConfirmDialogModule,
+    ContextMenuModule,
     DropdownModule,
     ScrollPanelModule,
     TableModule,
     TagModule,
     InputTextModule,
-    InputTextareaModule
+    InputTextareaModule,
+    ToastModule
   ],
   providers: [
     CampaignApiService,
     CampaignService,
-    DialogService
+    ConfirmationService,
+    DialogService,
+    MessageService
   ]
 })
 export class CampaignModule { }
