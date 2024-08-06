@@ -14,7 +14,9 @@
   <p-table
       [columns]="cols"
       [value]="leaders"
-      [rowsPerPageOptions]="[10, 20]"
+      [rowsPerPageOptions]="[5, 10, 15]"
+      [rows]="10"
+      [paginator]="true"
       [loading]="isLoading"
       [rowHover]="true"
       [contextMenu]="cmLeader"

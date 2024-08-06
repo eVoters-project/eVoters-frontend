@@ -14,6 +14,12 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { PerformApiService } from '../../service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { ContextMenuModule } from 'primeng/contextmenu';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 
 @NgModule({
@@ -23,21 +29,29 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     PartyRoutingModule,
 
     ButtonModule,
+    ConfirmDialogModule,
+    ContextMenuModule,
     DropdownModule,
     DynamicDialogModule,
     InputTextModule,
     ScrollPanelModule,
     TableModule,
     TagModule,
+    ToastModule,
     InputTextareaModule
   ],
   providers: [
+    ConfirmationService,
+    DialogService,
     PartyApiService,
     PartyService,
-    DialogService,
+    PerformApiService,
+    MessageService
   ]
 })
 export class PartyModule { }

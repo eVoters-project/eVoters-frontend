@@ -1,38 +1,73 @@
-<p-scrollPanel class="flex flex-column gap-1 flex-auto">
-  <h4>Party Info.</h4>
+<p-toast />
 
-  <div class="flex flex-column gap-2">
-    <label for="firstname">Name</label>
-    <input id="firstname" pInputText type="text" class="outline-none" />
+@if (isLoading) {
+  <div class="loading">
+    <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+    <span>Please wait...</span>
   </div>
+}
+@else {
+  <p-scrollPanel class="flex flex-column gap-1 flex-auto" [formGroup]="rf">
+    <h4>Party Info.</h4>
 
-  <div class="flex flex-column gap-2">
-    <label for="firstname">Description</label>
-    <textarea pInputTextarea rows="3"></textarea>
+    <div class="flex flex-column gap-2">
+      <label for="firstname">Name</label>
+      <input
+        id="firstname"
+        pInputText
+        type="text"
+        class="outline-none"
+        formControlName="name" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="description">Description</label>
+      <textarea id="description"
+        pInputTextarea
+        rows="3"
+        formControlName="description" >
+      </textarea>
+    </div>
+
+    <div class="flex flex-auto flex-column gap-2">
+      <label for="gender">Leader</label>
+      <p-dropdown
+        id="gender"
+        appendTo="body"
+        [options]="leaders"
+        optionLabel="name"
+        [style]="{ width: '100%' }"
+        formControlName="leader" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="remarks">Remarks</label>
+      <textarea
+        id="remarks"
+        pInputTextarea
+        rows="3"
+        formControlName="remarks" >
+      </textarea>
+    </div>
+
+    <div class="flex flex-auto flex-column gap-2">
+        <label for="status">Status</label>
+        <p-dropdown
+          id="status"
+          appendTo="body"
+          [options]="status"
+          [style]="{ width: '100%' }"
+          formControlName="status" />
+    </div>
+  </p-scrollPanel>
+
+  <div class="flex justify-content-start gap-2">
+    <button
+      pButton
+      pRipple
+      [loading]="isSaving"
+      label="Save"
+      (click)="partySave()" >
+    </button>
   </div>
-
-  <div class="flex flex-auto flex-column gap-2">
-    <label for="gender">Leader</label>
-    <p-dropdown appendTo="body" [options]="[]" [style]="{ width: '100%' }"/>
-  </div>
-
-  <div class="flex flex-column gap-2">
-    <label for="firstname">Remarks</label>
-    <textarea pInputTextarea rows="3"></textarea>
-  </div>
-
-  <div class="flex flex-auto flex-column gap-2">
-      <label for="gender">Status</label>
-      <p-dropdown appendTo="body" [options]="status" [style]="{ width: '100%' }"/>
-  </div>
-</p-scrollPanel>
-
-<div class="flex justify-content-start gap-2">
-  <button
-    pButton
-    pRipple
-    [loading]="isLoading"
-    label="Save"
-    (click)="partySave()">
-  </button>
-</div>
+}

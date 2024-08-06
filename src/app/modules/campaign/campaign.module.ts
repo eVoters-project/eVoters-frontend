@@ -27,7 +27,6 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
   declarations: [
     IndexComponent,
     CampaignEntryComponent
-
   ],
   imports: [
     CommonModule,

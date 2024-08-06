@@ -18,6 +18,9 @@ export class PartyService {
   private partyDataRequestSaveSubject = new Subject<PartyInterface>();
   private partyDataSavedSubject = new Subject<boolean>();
 
+  private partyDataRequestDeleteSubject = new Subject<string>();
+  private partyDataDeletedSubject = new Subject<boolean>();
+
   constructor() { }
 
   onInit() {
@@ -36,6 +39,11 @@ export class PartyService {
   updateData(voter: Partial<PartyInterface>) {
     this.partyDataUpdateRequestSubject.next(voter);
     return this.partyDataUpdatedSubject.asObservable();
+  }
+
+  deleteData(id: string) {
+    this.partyDataRequestDeleteSubject.next(id);
+    return this.partyDataDeletedSubject.asObservable();
   }
 
   setPartyDataSubscription() {
@@ -78,7 +86,20 @@ export class PartyService {
         if (res) {
           this.partyDataUpdatedSubject.next(true);
         }
-      })
+      });
+
+    this.partyDataRequestDeleteSubject.pipe(
+      concatMap((id) =>
+        this.partyApi.delete(id)
+          .pipe(
+            take(1)
+          )
+      )
+    ).subscribe((res: any) => {
+      if (res) {
+        this.partyDataDeletedSubject.next(true);
+      }
+    });
   }
 
   get partyData$(): Observable<PartyInterface[]> {

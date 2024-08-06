@@ -1,3 +1,5 @@
+<p-confirmDialog />
+<p-toast />
 <div class="card">
   <div class="title-bar">
     <h3 class="title">Parties</h3>
@@ -12,16 +14,20 @@
   <p-table
       [columns]="cols"
       [value]="parties ?? []"
-      [rowsPerPageOptions]="[10, 20]"
+      [rowsPerPageOptions]="[5, 10, 15]"
+      [rows]="10"
+      [paginator]="true"
       [loading]="isLoading"
       [rowHover]="true"
+      [contextMenu]="cmParty"
+      [(contextMenuSelection)]="party"
       [tableStyle]="{ 'min-width': '50rem' }"
       styleClass="p-datatable-striped"
       >
         <ng-template pTemplate="caption">
           <div class="flex align-items-center justify-content-between">
             Party List
-            <p-button icon="pi pi-refresh"/>
+            <p-button icon="pi pi-refresh" (onClick)="partyService.requestData();" />
           </div>
         </ng-template>
         <ng-template pTemplate="header" let-columns>
@@ -32,7 +38,7 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columns">
-            <tr>
+            <tr [pContextMenuRow]="rowData">
                 @for (col of columns; track $index) {
                   <td>
                     @switch (col.field) {
@@ -51,3 +57,5 @@
         </ng-template>
     </p-table>
 </div>
+
+<p-contextMenu #cmParty [model]="gridContextMenus"></p-contextMenu>
