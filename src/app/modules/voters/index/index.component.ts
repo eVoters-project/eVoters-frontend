@@ -26,12 +26,15 @@ export class IndexComponent implements OnInit, OnDestroy {
 
   arr_subs = new Array<Subscription>();
 
+  source_voters: VoterInterface[] = [];
   voters!: VoterInterface[];
   voter!: VoterInterface;
 
   cols = VoterColumns;
 
-  isLoading = false;
+  protected isLoading = false;
+  protected voterFilterSequence = 0;
+
   addVoterSidebarVisible = false;
 
   protected gridContextMenus = [
@@ -149,6 +152,22 @@ export class IndexComponent implements OnInit, OnDestroy {
     }
 
     return false
+
+  }
+
+  protected ApplyFilters() {
+
+    if (!this.source_voters?.length) {
+      this.source_voters = this.voters;
+    }
+
+    const filtered_voters = this.source_voters.filter(p =>
+      (this.voterFilterSequence == 1 ? p.verified : true) &&
+      (this.voterFilterSequence == 2 ? p.confirmed : true) &&
+      (this.voterFilterSequence == 3 ? p.unassigned : true)
+    );
+
+    this.voters = filtered_voters;
 
   }
 

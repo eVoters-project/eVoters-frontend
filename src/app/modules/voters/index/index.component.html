@@ -23,19 +23,56 @@
       [contextMenu]="cmVoter"
       [(contextMenuSelection)]="voter"
       [(selection)]="voter"
+      [globalFilterFields]="['precinct_no', 'firstname', 'middlename', 'lastname', 'status']"
       [tableStyle]="{ 'min-width': '50rem' }"
       styleClass="p-datatable-striped"
       >
         <ng-template pTemplate="caption">
           <div class="flex align-items-center justify-content-between">
-            Voters List
-            <p-button icon="pi pi-refresh" (onClick)="voterService.requestData();"/>
+            <div class="flex gap-2">
+              <p-button
+                label="Verified Voters"
+                icon="pi pi-check-circle"
+                [rounded]="true"
+                severity="info"
+                class="grid-filter-button"
+                [ngClass]="{ 'grid-filter-button-icon': voterFilterSequence == 1 }"
+                (onClick)="voterFilterSequence != 1 ?
+                  voterFilterSequence = 1
+                  : voterFilterSequence = 0;
+                  ApplyFilters();" />
+              <p-button
+                label="Confirmed Leaders"
+                icon="pi pi-check-circle"
+                [rounded]="true"
+                severity="info"
+                class="grid-filter-button"
+                [ngClass]="{ 'grid-filter-button-icon': voterFilterSequence == 2 }"
+                (onClick)="voterFilterSequence != 2 ?
+                  voterFilterSequence = 2
+                  : voterFilterSequence = 0;
+                  ApplyFilters();" />
+              <p-button
+                label="Unassigned Voters"
+                icon="pi pi-check-circle"
+                [rounded]="true"
+                severity="info"
+                class="grid-filter-button"
+                [ngClass]="{ 'grid-filter-button-icon': voterFilterSequence == 3 }"
+                (onClick)="voterFilterSequence != 3 ?
+                  voterFilterSequence = 3
+                  : voterFilterSequence = 0;
+                  ApplyFilters();" />
+            </div>
+
+            <p-button icon="pi pi-refresh" (onClick)="voterService.requestData(); voterFilterSequence = 0;"/>
           </div>
         </ng-template>
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th *ngFor="let col of columns">
                     {{ col.header }}
+                    <p-columnFilter type="text" [field]="col.field" display="menu" />
                 </th>
             </tr>
         </ng-template>

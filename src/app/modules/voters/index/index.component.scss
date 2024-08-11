@@ -25,3 +25,18 @@
 :host ::ng-deep .row-accessories {
   background-color: #fff5f5 !important;
 }
+
+:host ::ng-deep .grid-filter-button .p-button-label {
+  font-size: .9rem;
+  font-weight: 400 !important;
+}
+
+:host ::ng-deep .grid-filter-button-icon {
+  .p-button-icon {
+    color: lightgreen !important;
+    font-weight: 600 !important;
+  }
+  .p-button-label {
+    color: lightgreen !important;
+  }
+}

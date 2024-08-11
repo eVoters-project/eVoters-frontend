@@ -26,6 +26,7 @@ import { VoterApiService } from '../../service/api';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
+import { ToggleButtonModule } from 'primeng/togglebutton';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { ToastModule } from 'primeng/toast';
     ToastModule,
     ScrollPanelModule,
     SidebarModule,
-    TagModule
+    TagModule,
+    ToggleButtonModule
   ],
   providers: [
     VoterService,

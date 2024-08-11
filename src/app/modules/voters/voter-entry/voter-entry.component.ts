@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Gender, Status, VoterStatus } from '../../../data';
 import { VoterService } from '../service/voter.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { catchError, delay, throwError } from 'rxjs';
 import { format } from 'date-fns';
@@ -24,22 +24,25 @@ export class VoterEntryComponent {
 
   // forms
   rf: FormGroup = this.fb.group({
-    firstname: '',
-    middlename: '',
-    lastname: '',
-    nickname: '',
-    gender: '',
-    date_of_birth: '',
-    address: '',
-    precinct_no: '',
-    vin_no: '',
-    status: '',
-    category: '',
-    vote_group: '',
-    vote_type: '',
-    vote_status: '',
-    longitude: '',
-    latitude: '',
+    firstname: this.fb.control('', { validators: [Validators.required] }),
+    middlename: this.fb.control(''),
+    lastname: this.fb.control('', { validators: [Validators.required] }),
+    nickname: this.fb.control(''),
+    gender: this.fb.control('', { validators: [Validators.required] }),
+    date_of_birth: this.fb.control('', { validators: [Validators.required] }),
+    address: this.fb.control(''),
+    precinct_no: this.fb.control(''),
+    vin_no: this.fb.control(''),
+    status: this.fb.control(''),
+    category: this.fb.control(''),
+    vote_group: this.fb.control(''),
+    vote_type: this.fb.control(''),
+    vote_status: this.fb.control(''),
+    longitude: this.fb.control(''),
+    latitude: this.fb.control(''),
+    verified_voter: this.fb.control(false),
+    confirmed_leader: this.fb.control(false),
+    unassigned_voter: this.fb.control(true),
   });
 
   // props
