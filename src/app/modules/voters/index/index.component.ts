@@ -3,7 +3,7 @@ import { VoterColumns } from '../data/voter.column';
 import { FormBuilder, FormGroup, NonNullableFormBuilder } from '@angular/forms';
 import { VoterApiService } from '../../../service/api';
 import { HttpUltils } from '../../../utils/http';
-import { VoterInterface } from '../../../interface';
+import { ResponseVoterInterface, VoterInterface } from '../../../interface';
 import { VoterService } from '../service/voter.service';
 import { debounce, debounceTime, delay, Subscription, take, tap } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -26,9 +26,9 @@ export class IndexComponent implements OnInit, OnDestroy {
 
   arr_subs = new Array<Subscription>();
 
-  source_voters: VoterInterface[] = [];
-  voters!: VoterInterface[];
-  voter!: VoterInterface;
+  source_voters: ResponseVoterInterface[] = [];
+  voters!: ResponseVoterInterface[];
+  voter!: ResponseVoterInterface;
 
   cols = VoterColumns;
 
@@ -83,12 +83,12 @@ export class IndexComponent implements OnInit, OnDestroy {
       })
   }
 
-  private findCoordinates(voter: VoterInterface) {
+  private findCoordinates(voter: ResponseVoterInterface) {
     const ref = this.dialogService
       .open(VoterFindCoordinatesComponent, {
         data: {
           id: voter.id,
-          name: getVoterFullname(voter)
+          name: `${voter.firstname_middlename} ${voter.lastname}`
         },
         header: 'Find and Set Voter Coordinates',
         width: '80rem',
@@ -143,7 +143,7 @@ export class IndexComponent implements OnInit, OnDestroy {
     }
   }
 
-  protected getVoterLatLngInvalid(voter: VoterInterface) {
+  protected getVoterLatLngInvalid(voter: ResponseVoterInterface) {
 
     const { latitude, longitude } = voter;
 

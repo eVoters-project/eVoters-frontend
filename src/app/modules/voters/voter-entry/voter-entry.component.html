@@ -1,84 +1,102 @@
-<p-scrollPanel class="flex flex-column gap-1" [formGroup]="rf">
-  <h4>Person Profile Info.</h4>
+@if (isLoading) {
+  <div class="loading">
+    <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+    <span>Please wait...</span>
+  </div>
+}
+@else {
+  <p-scrollPanel class="flex flex-column gap-1" [formGroup]="rf">
+    <h4>Person Profile Info.</h4>
 
-  <div class="flex flex-column gap-2">
-      <label for="firstname">Firstname</label>
-      <input id="firstname" pInputText type="text" formControlName="firstname" class="outline-none" />
-  </div>
-  <div class="flex flex-column gap-2">
-      <label for="middlename">Middlename</label>
-      <input id="middlename" pInputText type="text" formControlName="middlename" class="outline-none" />
-  </div>
-  <div class="flex flex-column gap-2">
-      <label for="lastname">Lastname</label>
-      <input id="lastname" pInputText type="text" formControlName="lastname" class="outline-none" />
-  </div>
-
-  <div class="flex flex-row gap-1">
-    <div class="flex flex-auto flex-column gap-2">
-      <label for="dateofbirth">Date of Birth</label>
-      <p-calendar id="dateofbirth" [showIcon]="true" class="outline-none" [inputStyle]="{ width: '100%'}" formControlName="date_of_birth" />
+    <div class="flex flex-column gap-2">
+        <label for="firstname">Firstname</label>
+        <input id="firstname" pInputText type="text" formControlName="firstname" class="outline-none" />
+    </div>
+    <div class="flex flex-column gap-2">
+        <label for="middlename">Middlename</label>
+        <input id="middlename" pInputText type="text" formControlName="middlename" class="outline-none" />
+    </div>
+    <div class="flex flex-column gap-2">
+        <label for="lastname">Lastname</label>
+        <input id="lastname" pInputText type="text" formControlName="lastname" class="outline-none" />
     </div>
 
-    <div class="flex flex-auto flex-column gap-2">
-        <label for="gender">Gender</label>
-        <p-dropdown id="gender" appendTo="body" [options]="genders" [style]="{ width: '100%' }" formControlName="gender"/>
+    <div class="flex flex-row gap-1">
+      <div class="flex flex-auto flex-column gap-2">
+        <label for="dateofbirth">Date of Birth</label>
+        <p-calendar id="dateofbirth" [showIcon]="true" class="outline-none" [inputStyle]="{ width: '100%'}" formControlName="date_of_birth" />
+      </div>
+
+      <div class="flex flex-auto flex-column gap-2">
+          <label for="gender">Gender</label>
+          <p-dropdown id="gender" appendTo="body" [options]="genders" [style]="{ width: '100%' }" formControlName="gender"/>
+      </div>
     </div>
+
+    <h4>Address Info.</h4>
+
+    <div class="flex flex-column gap-2">
+        <label for="address">Address</label>
+        <input id="address" pInputText type="text" class="outline-none" formControlName="address" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="barangay">Barangay</label>
+      <p-dropdown id="barangay" appendTo="body" optionLabel="name" [options]="barangays" [style]="{ width: '100%' }" formControlName="barangay"/>
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="purok">Purok</label>
+      <p-dropdown id="purok" appendTo="body" optionLabel="name" [options]="puroks" [style]="{ width: '100%' }" formControlName="purok"/>
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="longitude">Longitude</label>
+      <input id="longitude" pInputText type="text" class="outline-none" formControlName="latitude" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="latitude">Latitude</label>
+      <input id="latitude" pInputText type="text" class="outline-none" formControlName="longitude" />
+    </div>
+
+    <h4>Comelec Voter Info.</h4>
+
+    <div class="flex flex-column gap-2">
+      <label for="precinctno">Precinct No.</label>
+      <input id="precinctno" pInputText type="text" class="outline-none" formControlName="precint_no" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="vinno">Vin No.</label>
+      <input id="vinno" pInputText type="text" class="outline-none" formControlName="vin_no" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="votergroup">Group</label>
+      <p-dropdown id="votergroup" appendTo="body" optionLabel="name" [options]="groupTypes" [style]="{ width: '100%' }" formControlName="vote_group"/>
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="votertype">Type</label>
+      <!-- <input id="votertype" pInputText type="text" class="outline-none" /> -->
+      <p-dropdown id="votertype" appendTo="body" [options]="[]" [style]="{ 'width': '100%', 'minWidth': '50px' }" formControlName="vote_type"/>
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="voterstatus">Status</label>
+      <p-dropdown id="voterstatus" appendTo="body" panelStyleClass="overlayTop" [options]="status" [style]="{ 'width': '100%' }" formControlName="vote_status" />
+    </div>
+
+  </p-scrollPanel>
+
+  <div class="flex justify-content-start">
+    <button
+      pButton
+      pRipple
+      [loading]="isSaving"
+      label="Save"
+      (click)="voterSave()">
+    </button>
   </div>
-
-  <br/>
-
-  <div class="flex flex-column gap-2">
-      <label for="address">Address</label>
-      <input id="address" pInputText type="text" class="outline-none" formControlName="address" />
-  </div>
-
-  <div class="flex flex-column gap-2">
-    <label for="longitude">Longitude</label>
-    <input id="longitude" pInputText type="text" class="outline-none" formControlName="latitude" />
-  </div>
-
-  <div class="flex flex-column gap-2">
-    <label for="latitude">Latitude</label>
-    <input id="latitude" pInputText type="text" class="outline-none" formControlName="longitude" />
-  </div>
-
-  <h4>Comelec Voter Info.</h4>
-
-  <div class="flex flex-column gap-2">
-    <label for="precinctno">Precinct No.</label>
-    <input id="precinctno" pInputText type="text" class="outline-none" formControlName="precint_no" />
-  </div>
-
-  <div class="flex flex-column gap-2">
-    <label for="vinno">Vin No.</label>
-    <input id="vinno" pInputText type="text" class="outline-none" formControlName="vin_no" />
-  </div>
-
-  <div class="flex flex-column gap-2">
-    <label for="votergroup">Group</label>
-    <input id="votergroup" pInputText type="text" class="outline-none" formControlName="vote_group" />
-  </div>
-
-  <div class="flex flex-column gap-2">
-    <label for="votertype">Type</label>
-    <!-- <input id="votertype" pInputText type="text" class="outline-none" /> -->
-    <p-dropdown id="votertype" appendTo="body" [options]="[]" [style]="{ 'width': '100%', 'minWidth': '50px' }" formControlName="vote_type"/>
-  </div>
-
-  <div class="flex flex-column gap-2">
-    <label for="voterstatus">Status</label>
-    <p-dropdown id="voterstatus" appendTo="body" panelStyleClass="overlayTop" [options]="status" [style]="{ 'width': '100%' }" formControlName="vote_status" />
-  </div>
-
-</p-scrollPanel>
-
-<div class="flex justify-content-start">
-  <button
-    pButton
-    pRipple
-    [loading]="isLoading"
-    label="Save"
-    (click)="voterSave()">
-  </button>
-</div>
+}

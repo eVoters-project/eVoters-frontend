@@ -1,14 +1,14 @@
 import { inject, Injectable } from "@angular/core";
 import { VoterApiService } from "../../../service/api";
 import { catchError, concatMap, EMPTY, Observable, Subject, take, takeUntil, throwError } from "rxjs";
-import { VoterInterface } from "../../../interface";
+import { ResponseVoterInterface, VoterInterface } from "../../../interface";
 
 @Injectable()
 export class VoterService {
 
   private voterApi = inject(VoterApiService);
 
-  private voterDataSubject = new Subject<VoterInterface[]>;
+  private voterDataSubject = new Subject<ResponseVoterInterface[]>;
   private voterDataRequestSubject = new Subject();
   private voterDataRequestCancelled = new Subject<boolean>();
 
@@ -102,7 +102,7 @@ export class VoterService {
     });
   }
 
-  get voterData$(): Observable<VoterInterface[]> {
+  get voterData$(): Observable<ResponseVoterInterface[]> {
     return this.voterDataSubject.asObservable();
   }
 

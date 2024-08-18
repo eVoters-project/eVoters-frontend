@@ -23,6 +23,7 @@
       [contextMenu]="cmVoter"
       [(contextMenuSelection)]="voter"
       [(selection)]="voter"
+      selectionMode="single"
       [globalFilterFields]="['precinct_no', 'firstname', 'middlename', 'lastname', 'status']"
       [tableStyle]="{ 'min-width': '50rem' }"
       styleClass="p-datatable-striped"
@@ -71,23 +72,25 @@
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th *ngFor="let col of columns">
-                    {{ col.header }}
-                    <p-columnFilter type="text" [field]="col.field" display="menu" />
+                    @if (col.field != 'id') {
+                      {{ col.header }}
+                      <p-columnFilter type="text" [field]="col.field" display="menu" />
+                    }
                 </th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columns">
-            <tr [pContextMenuRow]="rowData" [ngClass]="{ 'row-accessories': getVoterLatLngInvalid(rowData) }">
+            <tr [pContextMenuRow]="rowData" [pSelectableRow]="rowData" [ngClass]="{ 'row-accessories': getVoterLatLngInvalid(rowData) }">
                 @for (col of columns; track $index) {
                   <td>
-                    @switch (col.field) {
-                      @case ('id') {
-                      }
-                      @case ('vote_status') {
-                        <p-tag [value]="rowData[col.field]" [severity]="getVoteStatus(rowData[col.field])" />
-                      }
-                      @default {
-                        {{ rowData[col.field] }}
+                    @if (col.field != 'id') {
+                      @switch (col.field) {
+                        @case ('vote_status') {
+                          <p-tag [value]="rowData[col.field]" [severity]="getVoteStatus(rowData[col.field])" />
+                        }
+                        @default {
+                          {{ rowData[col.field] }}
+                        }
                       }
                     }
                   </td>
