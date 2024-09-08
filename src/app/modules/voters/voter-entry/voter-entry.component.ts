@@ -57,6 +57,7 @@ export class VoterEntryComponent implements OnInit {
     nickname: this.fb.control(''),
     gender: this.fb.control('', { validators: [Validators.required] }),
     date_of_birth: this.fb.control('', { validators: [Validators.required] }),
+    mobile_no: this.fb.control('', { validators: [Validators.required] }),
     address: this.fb.control(''),
     barangay: this.fb.control(''),
     purok: this.fb.control(''),
@@ -105,8 +106,9 @@ export class VoterEntryComponent implements OnInit {
 
     const data = this.rf.getRawValue();
     data.date_of_birth = format(data.date_of_birth, 'yyyy-MM-dd');
+    data.mobile_no = data.mobile_no.replace(/-/g, '');
 
-    this.isSaving = true;
+    this.isSaving = true; console.log(data);
 
     const unsub$ = new Subject<void>();
 

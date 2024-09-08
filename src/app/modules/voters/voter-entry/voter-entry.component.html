@@ -33,6 +33,15 @@
       </div>
     </div>
 
+    <div class="flex flex-column gap-2">
+      <label for="mobile_no">Mobile No.</label>
+      <p-inputMask
+        id="mobile_no"
+        mask="9999-999-9999"
+        formControlName="mobile_no"
+        placeholder="9999-999-9999" />
+  </div>
+
     <h4>Address Info.</h4>
 
     <div class="flex flex-column gap-2">
@@ -60,7 +69,7 @@
       <input id="latitude" pInputText type="text" class="outline-none" formControlName="longitude" />
     </div>
 
-    <h4>Comelec Voter Info.</h4>
+    <h4>Voter Info.</h4>
 
     <div class="flex flex-column gap-2">
       <label for="precinctno">Precinct No.</label>

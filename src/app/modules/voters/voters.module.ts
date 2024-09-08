@@ -27,6 +27,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { ToggleButtonModule } from 'primeng/togglebutton';
+import { InputMask, InputMaskModule } from 'primeng/inputmask';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
     ButtonModule,
     CalendarModule,
     DropdownModule,
+    InputMaskModule,
     InputTextModule,
     MenuModule,
     ToastModule,

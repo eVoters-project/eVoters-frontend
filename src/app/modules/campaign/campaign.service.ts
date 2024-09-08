@@ -2,6 +2,8 @@ import { inject, Injectable } from "@angular/core";
 import { CampaignApiService } from "../../service/api";
 import { concatMap, Observable, Subject, take, takeUntil } from "rxjs";
 import { CampaignInterface } from "./data/interface";
+import { CampaignSendSMS } from "./data/interface/campaign-send-sms.interface";
+import { nextDay } from "date-fns";
 
 @Injectable()
 export class CampaignService {
@@ -20,6 +22,9 @@ export class CampaignService {
 
   private leaderDataRequestDeleteSubject = new Subject<string>();
   private leaderDataDeletedSubject = new Subject<boolean>();
+
+  private campaignSendSMSRequestSubject = new Subject<CampaignSendSMS>();
+  private campaignSendSMSReponseSubject = new Subject<boolean>();
 
   onInit() {
     this.setCampaignDataSubscription();
@@ -42,6 +47,11 @@ export class CampaignService {
   deleteData(id: string) {
     this.leaderDataRequestDeleteSubject.next(id);
     return this.leaderDataDeletedSubject.asObservable();
+  }
+
+  sendSMS(payload: CampaignSendSMS) {
+    this.campaignSendSMSRequestSubject.next(payload);
+    return this.campaignSendSMSReponseSubject.asObservable();
   }
 
   setCampaignDataSubscription() {
@@ -98,6 +108,17 @@ export class CampaignService {
         this.leaderDataDeletedSubject.next(true);
       }
     });
+
+    this.campaignSendSMSRequestSubject.pipe(
+      concatMap((send) =>
+        this.campaignApi.sendSMS(send)
+      )
+    )
+      .subscribe((res: any) => {
+        if (res) {
+          this.campaignSendSMSReponseSubject.next(true);
+        }
+      })
   }
 
   get campaignData$(): Observable<CampaignInterface[]> {

@@ -30,4 +30,8 @@ export class CampaignApiService {
     return this.http.delete(`${this.urlApi}/campaign/${id}`);
   }
 
+  sendSMS(payload: any) {
+    return this.http.post(`${this.urlApi}/campaign/send-sms-campaign`, payload);
+  }
+
 }

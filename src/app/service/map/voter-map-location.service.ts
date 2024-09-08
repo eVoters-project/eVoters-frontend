@@ -44,7 +44,13 @@ export class VoterMapLocationService extends BaseService {
         if (res) {
           res.data.forEach((loc: any) => {
             this.voterLocationOnMap.set(loc.id, {
-              name: loc.name,
+              voter: {
+                name: `${loc.firstname_middlename} ${loc.lastname}`,
+                barangay: loc.barangay,
+                purok: loc.purok,
+                party: loc.party,
+                position: loc.position
+              },
               longitude: loc.longitude,
               latitude: loc.latitude
             })

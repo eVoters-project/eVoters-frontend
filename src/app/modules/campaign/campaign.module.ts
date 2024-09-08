@@ -11,7 +11,7 @@ import { CampaignEntryComponent } from './campaign-entry/campaign-entry.componen
 import { DropdownModule } from 'primeng/dropdown';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { DialogService } from 'primeng/dynamicdialog';
-import { CampaignApiService } from '../../service/api';
+import { CampaignApiService, VoterApiService } from '../../service/api';
 import { CampaignService } from './campaign.service';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
@@ -21,29 +21,47 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { CampaignEventComponent } from './campaign-event/campaign-event.component';
+import { CampaignSmsComponent } from './campaign-sms/campaign-sms.component';
+import { PickListModule } from 'primeng/picklist';
+import { DragDropModule } from 'primeng/dragdrop';
+import { DividerModule } from 'primeng/divider';
+import { FieldsetModule } from 'primeng/fieldset';
+import { PanelModule } from 'primeng/panel';
+import { VoterService } from '../voters/service/voter.service';
+import { PerformApiService } from '../../service';
 
 
 @NgModule({
   declarations: [
     IndexComponent,
-    CampaignEntryComponent
+    CampaignEntryComponent,
+    CampaignEventComponent,
+    CampaignSmsComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     CampaignRoutingModule,
-
     ButtonModule,
     CalendarModule,
     CardModule,
     ConfirmDialogModule,
     ContextMenuModule,
+    DividerModule,
+    DragDropModule,
     DropdownModule,
+    FieldsetModule,
     ScrollPanelModule,
     TableModule,
     TagModule,
     InputTextModule,
+    InputTextareaModule,
+    PanelModule,
+    PickListModule,
+    TabMenuModule,
     InputTextareaModule,
     ToastModule
   ],
@@ -52,7 +70,10 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     CampaignService,
     ConfirmationService,
     DialogService,
-    MessageService
+    MessageService,
+    PerformApiService,
+    VoterService,
+    VoterApiService
   ]
 })
 export class CampaignModule { }

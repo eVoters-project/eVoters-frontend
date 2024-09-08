@@ -3,6 +3,7 @@ export interface ResponseVoterInterface {
   precinct_no: string;
   lastname: string;
   firstname_middlename: string;
+  mobile_no: string;
   barangay: string;
   purok: string;
   party: string;

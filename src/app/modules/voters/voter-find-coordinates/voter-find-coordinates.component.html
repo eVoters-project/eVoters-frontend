@@ -17,16 +17,20 @@
     }
 
     <map-info-window [options]="mapInfoConfig()">
-      <div [ngTemplateOutlet]="infoWindow" [ngTemplateOutletContext]="{ latlng: marker?.getPosition() }"></div>
+      <div
+        [ngTemplateOutlet]="infoWindow"
+        [ngTemplateOutletContext]="{ latlng: marker?.getPosition() }">
+      </div>
     </map-info-window>
 
   </google-map>
+
   <br>
+
   <div>
     <strong>Voter: </strong>
     <span>{{dialogData.data?.name}}</span>
   </div>
-
 </div>
 
 <ng-template #infoWindow let-data="latlng">
@@ -45,7 +49,8 @@
       pRipple
       label="Save"
       [loading]="isLoading"
-      (click)="setVoterCoordinates();">
+      (click)="setVoterCoordinates();"
+      [style]="{ 'width': '100%' }">
     </button>
   </div>
 

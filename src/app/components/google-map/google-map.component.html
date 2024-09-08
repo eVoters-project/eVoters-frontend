@@ -1,15 +1,23 @@
 
 <div id="gmap">
   <google-map
+    #gmap
     [options]="mapOptions"
     height="100%"
     width="100%"
     (mapClick)="addMarker($event);">
 
+    <!-- marker for voter locations -->
     @for (coords of voterCoordinates; track $index) {
-      <map-marker [position]="coords" [options]="voterLocationMarkerConfig"></map-marker>
+      <map-marker
+        #mapMarkerVoterLocation="mapMarker"
+        [position]="coords"
+        [options]="voterLocationMarkerConfig"
+        (mapClick)="onMapMarkerInfoVoterLocation(mapMarkerVoterLocation)">
+      </map-marker>
     }
 
+    <!-- marker for the current mouseclicked on the map -->
     @if (markerCoordinates()) {
       <map-marker
         #marker="mapMarker"
@@ -19,7 +27,49 @@
       </map-marker>
     }
 
-    <map-info-window>This is a sample info window</map-info-window>
+    <map-info-window
+      #mapInfoMouseClickCoordinate="mapInfoWindow">
+        This is a sample info window
+    </map-info-window>
+
+    <map-info-window
+      #mapInfoVoterLocationCoordinate="mapInfoWindow"
+      [options]="markerInfoVoterLocation()">
+        <div
+          [ngTemplateOutlet]="infoWindowVoterData"
+          [ngTemplateOutletContext]="{ voter: voter }">
+        </div>
+  </map-info-window>
 
   </google-map>
 </div>
+
+
+<ng-template #infoWindowVoterData let-data="voter">
+  <div class="flex flex-column w-24rem">
+    <div>
+      <strong>Name: </strong>
+      <span class="ml-2">{{ data?.voter?.name }}</span>
+    </div>
+    <div>
+      <strong>Barangay: </strong>
+      <span class="ml-2">{{ data?.voter?.barangay }}</span>
+    </div>
+    <div>
+      <strong>Purok: </strong>
+      <span class="ml-2">{{ data?.voter?.purok }}</span>
+    </div>
+
+    <br>
+
+    <div>
+      <strong>Party: </strong>
+      <span class="ml-2"> {{ data?.voter?.party }}</span>
+    </div>
+    <div>
+      <strong>Position: </strong>
+      <span class="ml-2"> {{ data?.voter?.position }}</span>
+    </div>
+  </div>
+
+</ng-template>

@@ -1,0 +1,72 @@
+<div class="flex flex-1">
+  <p-pickList
+    #picklist
+    [source]="sourceVoters"
+    [target]="targetVoters"
+    sourceHeader="Voters List"
+    targetHeader="Voters Selected"
+    [dragdrop]="true"
+    [sourceStyle]="{ 'height': '43rem' }"
+    [targetStyle]="{ 'height': '43rem' }"
+    breakpoint="800px"
+    [stripedRows]="true"
+    class="flex-1">
+    <ng-template let-voter pTemplate="item">
+      <div class="flex flex-wrap p-2 align-items-center gap-3">
+          <img
+              class="w-4rem shadow-2 flex-shrink-0 border-round"
+              src="/assets/img/default_user.png"
+              alt="{voter}" />
+          <div class="flex-1 flex flex-column gap-2">
+              <span class="font-bold">
+                  {{ voter.firstname_middlename }} {{ voter.lastname }}
+              </span>
+              <div class="flex align-items-center gap-2">
+                  <i class="pi pi-tag text-sm"></i>
+                  <span>
+                      {{ voter.barangay }}
+                  </span>
+              </div>
+              <div class="flex align-items-center gap-2">
+                <i class="pi pi-tag text-sm"></i>
+                <span>
+                    {{ voter.purok }}
+                </span>
+            </div>
+          </div>
+          <span class="font-bold text-900">
+              {{ voter.mobile_no }}
+          </span>
+      </div>
+  </ng-template>
+  </p-pickList>
+</div>
+
+
+<p-panel [formGroup]="rf"
+  header="Compose Message"
+  class="flex flex-column w-4">
+
+  <div class="flex flex-auto flex-column gap-2">
+    <label for="gender">Event</label>
+    <p-dropdown
+      appendTo="body"
+      optionLabel="name"
+      [showClear]="true"
+      [style]="{ 'width': '100%', 'margin-bottom': '1rem' }" />
+  </div>
+
+  <textarea
+    rows="15"
+    cols="30"
+    pInputTextarea
+    formControlName="message"
+    [style]="{ 'width': '100%', 'margin-bottom': '1rem' }">
+  </textarea>
+
+  <p-button
+    label="Send"
+    [loading]="isSending"
+    (onClick)="sendSMS();" />
+
+</p-panel>

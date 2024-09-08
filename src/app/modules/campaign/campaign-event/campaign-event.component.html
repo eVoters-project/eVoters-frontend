@@ -1,0 +1,75 @@
+
+<div class="flex flex-1">
+
+  <p-table
+      [columns]="cols"
+      [value]="campaigns"
+      [rowsPerPageOptions]="[5, 10, 15]"
+      [rows]="10"
+      [paginator]="true"
+      [loading]="isLoading"
+      [rowHover]="true"
+      [contextMenu]="cmCampaign"
+      [(contextMenuSelection)]="campaign"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      class="w-full"
+      styleClass="p-datatable-striped"
+      >
+        <ng-template pTemplate="caption">
+          <div class="flex align-items-center justify-content-between">
+            Campaign List
+            <p-button icon="pi pi-refresh" (onClick)="campaignService.requestData();"/>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+              @for (col of columns; track $index) {
+                @switch (col.field) {
+                  @case ('attendees') {
+                    <th [style]="{ width: col.width }">
+                      {{ col.header }}
+                    </th>
+                  }
+                  @default {
+                    <th>
+                      {{ col.header }}
+                    </th>
+                  }
+                 }
+              }
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pContextMenuRow]="rowData">
+                @for (col of columns; track $index) {
+                  <td>
+                    @switch (col.field) {
+                      @case ('id') {
+
+                      }
+                      @case ('when') {
+                        {{ rowData[col.field] | date: 'MM/dd/yyyy hh:mm:ss aa' }}
+                      }
+                      @case ('status') {
+                        <p-tag [value]="rowData[col.field]" />
+                      }
+                      @case ('attendees') {
+                        <div [ngClass]="{ 'no-attendee': rowData[col.field] < 1, 'low-attendee': rowData[col.field] >= 1 && rowData[col.field] < 10, 'high-attendee':  rowData[col.field] > 10 }">
+                          {{ rowData[col.field] }}
+                        </div>
+                      }
+                      @default {
+                        {{ rowData[col.field] }}
+                      }
+                    }
+                  </td>
+                }
+            </tr>
+        </ng-template>
+  </p-table>
+
+</div>
+
+
+
+<p-contextMenu #cmCampaign [model]="gridContextMenus"></p-contextMenu>
