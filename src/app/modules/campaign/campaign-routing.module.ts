@@ -18,6 +18,11 @@ const routes: Routes = [
         path: 'sms',
         component: CampaignSmsComponent,
         title: 'Campaign | SMS'
+      },
+      {
+        path: '',
+        redirectTo: 'event',
+        pathMatch: 'full'
       }
     ]
   }
