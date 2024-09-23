@@ -1,1 +1,191 @@
-<p>per-location works!</p>
+<div class="flex flex-column p-2">
+  <p-table
+  [value]="perLocationVoteCount"
+  dataKey="positionId"
+  [expandedRowKeys]="expandedRows"
+  [scrollable]="true"
+  scrollHeight="548px"
+  styleClass="p-datatable-striped"
+  [tableStyle]="{ 'min-width': '60rem' }">
+
+  <!-- caption -->
+  <ng-template pTemplate="caption">
+    <div class="flex justify-content-between">
+      <h3>Vote Count Per Location</h3>
+      <div class="flex gap-2">
+        <p-button
+          label="Expand All"
+          icon="pi pi-plus"
+          [text]="true"
+          [rounded]="true"
+          (onClick)="expandAll()" />
+
+        <p-button
+          label="Collapse All"
+          icon="pi pi-minus"
+          [text]="true"
+          [rounded]="true"
+          (onClick)="collapseAll()" />
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- header -->
+  <ng-template pTemplate="header">
+    <tr>
+      @for (column of columns; track $index) {
+        <th>{{column.header}}</th>
+      }
+    </tr>
+  </ng-template>
+
+  <!-- body -->
+   <ng-template pTemplate="body" let-rowData let-expanded="expanded">
+    <tr>
+      @for (column of columns; track $index) {
+        @if (column.header === 'Position') {
+          <td class="flex align-items-center py-1">
+            <p-button
+              type="button"
+              pRipple
+              [pRowToggler]="rowData"
+              [text]="true"
+              [rounded]="true"
+              [plain]="true"
+              size="small"
+              class="mr-2"
+              [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'" />
+
+          <strong>{{rowData[column.field]}}</strong>
+          </td>
+        }
+        @else {
+          <td>
+            {{rowData[column.field]}}
+          </td>
+        }
+      }
+    </tr>
+   </ng-template>
+
+   <!-- row expansion -->
+  <ng-template pTemplate="rowexpansion" let-candidates>
+    <tr>
+      <td class="pr-0">
+        <div class="flex flex-column ml-6">
+          <p-table
+            [value]="candidates.candidates"
+            dataKey="candidateId"
+            rowGroupMode="subheader"
+            groupRowsBy="candidateId" >
+
+            <!-- groupheader -->
+            <ng-template pTemplate="groupheader" let-candidateData>
+              <tr pRowGroupHeader>
+                <td>
+                  <strong>{{candidateData.candidate}}</strong>
+                </td>
+              </tr>
+            </ng-template>
+
+            <!-- body -->
+            <ng-template pTemplate="body" let-candidateData>
+              <tr>
+                <div class="py-0">
+                  <p-table
+                    [value]="candidateData.locations"
+                    dataKey="locationId"
+                    [expandedRowKeys]="expandedRows2">
+
+                    <!-- body -->
+                    <ng-template pTemplate="body" let-locationData let-expanded2="expanded">
+                      <tr class="py-1">
+                        <td class="flex align-items-center py-1">
+                          <p-button
+                            type="button"
+                            pRipple
+                            [pRowToggler]="locationData"
+                            [text]="true"
+                            [rounded]="true"
+                            [plain]="true"
+                            size="small"
+                            class="mr-2"
+                            [icon]="expanded2 ? 'pi pi-chevron-down' : 'pi pi-chevron-right'" />
+
+                          <strong>{{locationData.location}}</strong>
+                        </td>
+                      </tr>
+                    </ng-template>
+
+                    <!-- rowexpansion -->
+                    <ng-template pTemplate="rowexpansion" let-locationData>
+                      <tr>
+                        <td>
+                          <p-table
+                            [value]="locationData.precincts"
+                            dataKey="precinctId" >
+
+                            <ng-template pTemplate="body" let-precinctData>
+                              <tr>
+                                <td>{{precinctData.precinct}}</td>
+                                <td>{{precinctData.total}}</td>
+                                <td>{{precinctData.votes}}</td>
+                                <td>{{precinctData.percentage}}</td>
+                              </tr>
+                            </ng-template>
+
+                            <!-- empty message -->
+                            <ng-template pTemplate="emptymessage">
+                              <tr>
+                                <td>
+                                  There are no <strong>Precinct(s)</strong> for {{locationData.location}} right now.
+                                </td>
+                              </tr>
+                            </ng-template>
+
+                          </p-table>
+                        </td>
+                      </tr>
+                    </ng-template>
+
+                    <!-- empty message -->
+                    <ng-template pTemplate="emptymessage">
+                      <tr>
+                        <td>
+                          There are no Vote Count <strong>Location(s)</strong> for {{candidateData.candidate}} right now.
+                        </td>
+                      </tr>
+                    </ng-template>
+
+                  </p-table>
+                </div>
+              </tr>
+            </ng-template>
+
+            <!-- empty message -->
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                <td>
+                  There are no <strong>Candidate(s)</strong> for {{candidates.position}} right now.
+                </td>
+              </tr>
+            </ng-template>
+
+          </p-table>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+  <!-- empty message -->
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td>
+        There are no <strong>Vote Count</strong> elective positions available right now.
+      </td>
+    </tr>
+  </ng-template>
+
+</p-table>
+
+</div>

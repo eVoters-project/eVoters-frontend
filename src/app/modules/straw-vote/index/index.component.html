@@ -1,3 +1,27 @@
 <div class="card">
   <h3 class="title">{{title}}</h3>
+
+  <br />
+
+  <div
+    class="flex gap-2 mb-2"
+    [formGroup]="rf" >
+    <p-dropdown
+      formControlName="barangay"
+      placeholder="Select a barangay"
+    />
+
+    <p-dropdown
+      formControlName="purok"
+      placeholder="Select a purok"
+    />
+  </div>
+
+  <p-tabMenu
+    [model]="menuItems" />
+
+  <div class="flex flex-1">
+    <router-outlet></router-outlet>
+  </div>
+
 </div>

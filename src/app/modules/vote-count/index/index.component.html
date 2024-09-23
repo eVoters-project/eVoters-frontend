@@ -23,11 +23,34 @@
 
   <br />
 
+  <div
+    class="flex gap-2 mb-2"
+    [formGroup]="rf" >
+    <p-dropdown
+      formControlName="barangay"
+      placeholder="Select a barangay"
+    />
+
+    <p-dropdown
+      formControlName="purok"
+      placeholder="Select a purok"
+    />
+
+    <p-dropdown
+      formControlName="position"
+      placeholder="Select a position"
+    />
+
+    <p-dropdown
+      formControlName="precinct"
+      placeholder="Select a precinct"
+    />
+  </div>
+
   <p-tabMenu
-    [(activeItem)]="activeMenu"
     [model]="menuItems" />
 
-  <div class="flex flex-1">
+  <div class="flex flex-column">
     <router-outlet></router-outlet>
   </div>
 
