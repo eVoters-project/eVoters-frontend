@@ -108,7 +108,7 @@ export class VoterEntryComponent implements OnInit {
     data.date_of_birth = format(data.date_of_birth, 'yyyy-MM-dd');
     data.mobile_no = data.mobile_no.replace(/-/g, '');
 
-    this.isSaving = true; console.log(data);
+    this.isSaving = true;
 
     const unsub$ = new Subject<void>();
 

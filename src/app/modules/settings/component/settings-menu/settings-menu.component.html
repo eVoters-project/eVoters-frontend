@@ -1,0 +1,20 @@
+<ul class="menu">
+  @for (menu of menus; track $index;) {
+      @for (item of menu.items; track $index) {
+
+        <li>
+          <a tabindex="0" [routerLink]="item.routerLink" pRipple>
+            <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
+            <span class="layout-menuitem-text">{{item.label}}</span>
+            <!-- @if (item?.items) {
+              <i class="pi pi-fw pi-angle-down"></i>
+            } -->
+          </a>
+        </li>
+
+      }
+
+  } @empty {
+    No Available Menus
+  }
+</ul>

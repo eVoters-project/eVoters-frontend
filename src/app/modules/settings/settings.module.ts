@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { SettingsRoutingModule } from './settings-routing.module';
 import { IndexComponent } from './index/index.component';
-
+import { TabMenuModule } from 'primeng/tabmenu';
+import { SettingsSharedModule } from './settings-shared.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,9 @@ import { IndexComponent } from './index/index.component';
   ],
   imports: [
     CommonModule,
-    SettingsRoutingModule
+    SettingsSharedModule,
+    SettingsRoutingModule,
+    TabMenuModule
   ]
 })
 export class SettingsModule { }

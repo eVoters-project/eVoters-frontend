@@ -1,3 +1,12 @@
 <div class="card">
   <h3 class="title">{{title}}</h3>
+
+
+  <p-tabMenu
+    [model]="menuItems" />
+
+  <div class="flex flex-column">
+    <router-outlet></router-outlet>
+  </div>
+
 </div>

@@ -1,0 +1,9 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  height: calc(100vh - 17.5rem);
+}
+

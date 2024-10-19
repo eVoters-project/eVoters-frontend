@@ -1,0 +1,68 @@
+@import "../../../../../assets/styles/layout/variables";
+@import "../../../../../assets/styles/layout/mixin";
+
+:host {
+  width: 100% !important;
+}
+
+.menu {
+
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+
+  a {
+    user-select: none;
+    text-decoration: none;
+
+    &.active-menu-item {
+      >.layout-submenu-toggler {
+        transform: rotate(-180deg);
+      }
+    }
+  }
+
+  li.active-menu-item {
+    >a {
+      .layout-submenu-toggler {
+        transform: rotate(-180deg);
+      }
+    }
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    position: relative;
+    outline: 0 none;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: .75rem 1rem;
+    border-radius: $borderRadius;
+    transition: background-color $transitionDuration, box-shadow $transitionDuration;
+
+    .layout-menuitem-icon {
+      margin-right: .5rem;
+    }
+
+    .layout-submenu-toggler {
+      font-size: 75%;
+      margin-left: auto;
+      transition: transform $transitionDuration;
+    }
+
+    &.active-route {
+        font-weight: 700;
+        color: var(--primary-color);
+    }
+
+    &:hover {
+        background-color: var(--surface-hover);
+    }
+
+    &:focus {
+        @include focused-inset();
+    }
+  }
+
+}

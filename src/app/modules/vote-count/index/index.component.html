@@ -23,28 +23,47 @@
 
   <br />
 
-  <div
-    class="flex gap-2 mb-2"
-    [formGroup]="rf" >
-    <p-dropdown
-      formControlName="barangay"
-      placeholder="Select a barangay"
-    />
+  <div class="flex justify-content-between">
 
-    <p-dropdown
-      formControlName="purok"
-      placeholder="Select a purok"
-    />
+    <div
+      class="flex gap-2 mb-2"
+      [formGroup]="rf" >
+      <p-dropdown
+        [options]="barangayData!"
+        optionLabel="name"
+        [loading]="barangayData == null"
+        formControlName="barangay"
+        placeholder="Select a barangay"
+      />
 
-    <p-dropdown
-      formControlName="position"
-      placeholder="Select a position"
-    />
+      <p-dropdown
+        [options]="purokData!"
+        optionLabel="name"
+        [loading]="purokData == null"
+        formControlName="purok"
+        placeholder="Select a purok"
+      />
 
-    <p-dropdown
-      formControlName="precinct"
-      placeholder="Select a precinct"
-    />
+      <p-dropdown
+
+        formControlName="position"
+        placeholder="Select a position"
+      />
+
+      <p-dropdown
+
+        formControlName="precinct"
+        placeholder="Select a precinct"
+      />
+    </div>
+
+    <p-button
+      pRipple
+      label="Entry"
+      [text]="true"
+      [rounded]="true"
+      icon="pi pi-plus" />
+
   </div>
 
   <p-tabMenu
