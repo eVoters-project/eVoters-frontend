@@ -1,0 +1,49 @@
+<p-confirmDialog />
+<p-toast />
+<div class="card">
+
+  <p-table
+    [columns]="cols"
+    [value]="voterbases"
+    [loading]="isLoading"
+    [rowHover]="true"
+    selectionMode="single"
+    [tableStyle]="{ 'min-width': '50rem' }">
+
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+          <th *ngFor="let col of columns" [style]="{ 'width': col.width }">
+              @if (col.field != 'id') {
+                {{ col.header }}
+              }
+          </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr [pSelectableRow]="rowData">
+            @for (col of columns; track $index) {
+              <td>
+                @if (col.field != 'id') {
+                  @switch (col.field) {
+                    @default {
+                      {{ rowData[col.field] }}
+                    }
+                  }
+                }
+              </td>
+            }
+        </tr>
+    </ng-template>
+
+    <!-- empty message -->
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="5">
+          There are no Voter Base's available.
+        </td>
+      </tr>
+    </ng-template>
+
+  </p-table>
+
+</div>

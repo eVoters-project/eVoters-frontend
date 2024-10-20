@@ -5,10 +5,12 @@ import { TableColumnInterface } from "../../../../shared/interface";
 export const JurisdictionLguColumns: TableColumnInterface[] = [
   {
     header: 'Code',
-    field: nameOf<LGUInterface>((obj) => obj.code)
+    field: nameOf<LGUInterface>((obj) => obj.code),
+    width: '120px'
   },
   {
     header: 'Name',
-    field: nameOf<LGUInterface>((obj) => obj.name)
+    field: nameOf<LGUInterface>((obj) => obj.name),
+    width: 'auto'
   }
 ]

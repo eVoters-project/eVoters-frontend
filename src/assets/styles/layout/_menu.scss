@@ -1,6 +1,6 @@
 .layout-sidebar {
   position: fixed;
-  width: 300px;
+  width: 250px;
   height: calc(100vh - 7rem);
   z-index: 999;
   overflow: auto;
@@ -70,12 +70,14 @@
       }
 
       &.active-route {
-          font-weight: 700;
-          color: var(--primary-color);
+        font-weight: 700;
+        color: var(--primary-color);
+        background-color: var(--surface-hover);
       }
 
       &:hover {
-          background-color: var(--surface-hover);
+        color: var(--primary-color);
+        background-color: var(--surface-hover);
       }
 
       &:focus {

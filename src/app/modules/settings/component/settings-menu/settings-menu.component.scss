@@ -52,12 +52,14 @@
     }
 
     &.active-route {
-        font-weight: 700;
-        color: var(--primary-color);
+      font-weight: 700;
+      color: var(--primary-color);
+      background-color: var(--surface-hover);
     }
 
     &:hover {
-        background-color: var(--surface-hover);
+      color: var(--primary-color);
+      background-color: var(--surface-hover);
     }
 
     &:focus {
@@ -65,4 +67,9 @@
     }
   }
 
+}
+
+:host ::ng-deep .p-menuitem-link-active {
+  font-weight: 700;
+  color: var(--primary-color);
 }

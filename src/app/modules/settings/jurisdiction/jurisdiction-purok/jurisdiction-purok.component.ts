@@ -20,7 +20,7 @@ export class JurisdictionPurokComponent {
   private arr_subs = new Array<Subscription>();
 
   protected cols = JurisdictionPurokColumns;
-  protected puroks: PurokInterface[] = [];
+  protected puroks: PurokInterface[] = [{ code: '0001', name: 'Mangga' }];
 
   protected isLoading = false;
 

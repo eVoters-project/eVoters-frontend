@@ -5,10 +5,12 @@ import { TableColumnInterface } from "../../../../shared/interface";
 export const JurisdictionPurokColumns: TableColumnInterface[] = [
   {
     header: 'Code',
-    field: nameOf<PurokInterface>((obj) => obj.code)
+    field: nameOf<PurokInterface>((obj) => obj.code),
+    width: '120px'
   },
   {
     header: 'Name',
-    field: nameOf<PurokInterface>((obj) => obj.name)
+    field: nameOf<PurokInterface>((obj) => obj.name),
+    width: 'auto'
   }
 ]

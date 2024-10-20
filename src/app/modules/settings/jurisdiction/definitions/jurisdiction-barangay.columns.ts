@@ -6,7 +6,7 @@ export const JurisdictionBarangayColumns: TableColumnInterface[] = [
   {
     header: 'Code',
     field: nameOf<BarangayInterface>((obj) => obj.code),
-    width: '150px'
+    width: '120px'
   },
   {
     header: 'Name',

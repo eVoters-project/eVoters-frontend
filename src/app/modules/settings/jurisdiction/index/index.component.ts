@@ -13,11 +13,11 @@ export class IndexComponent {
       label: 'Settings Menu',
       visible: true,
       items: [
-        { label: 'Purok', icon: 'pi pi-slack', routerLink: ['purok'] },
-        { label: 'Barangay', icon: 'pi pi-slack', routerLink: ['barangay'] },
-        { label: 'LGU', icon: 'pi pi-slack', routerLink: ['lgu'] },
-        { label: 'Province', icon: 'pi pi-slack', routerLink: ['province'] },
-        { label: 'Region', icon: 'pi pi-slack', routerLink: ['region'] }
+        { label: 'Purok', icon: '', routerLink: ['purok'] },
+        { label: 'Barangay', icon: '', routerLink: ['barangay'] },
+        { label: 'LGU', icon: '', routerLink: ['lgu'] },
+        { label: 'Province', icon: '', routerLink: ['province'] },
+        { label: 'Region', icon: '', routerLink: ['region'] }
       ]
     }
   ]

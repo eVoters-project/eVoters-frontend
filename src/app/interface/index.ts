@@ -25,3 +25,12 @@ export * from './modules/settings/region/region.interface';
 
 export * from './modules/settings/group-type/group-type.interface';
 export * from './modules/settings/group-type/response-group-type.interface';
+
+export * from './modules/settings/voter-base/voter-base.interface';
+export * from './modules/settings/voter-influence/voter-influence.interface';
+export * from './modules/settings/voter-influence-sub/voter-influence-sub.interface';
+export * from './modules/settings/voter-leader/voter-leader.interface';
+export * from './modules/settings/voter-leader-sub/voter-leader-sub.interface';
+export * from './modules/settings/voter-position/voter-position.interface';
+export * from './modules/settings/voter-status/voter-status.interface';
+export * from './modules/settings/voter-type/voter-type.interface';
