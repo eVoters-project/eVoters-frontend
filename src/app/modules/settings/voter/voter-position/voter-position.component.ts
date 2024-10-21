@@ -3,15 +3,21 @@ import { VoterPositionColumns } from '../definition/voter-position.columns';
 import { VoterPositionInterface } from '../../../../interface';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
-import { Subscription } from 'rxjs';
+import { debounceTime, delay, Subscription, tap } from 'rxjs';
+import { VoterPositionService } from '../service';
+import { VoterPositionApiService } from '../../../../service/api';
 
 @Component({
   selector: 'app-voter-position',
   templateUrl: './voter-position.component.html',
-  styleUrl: './voter-position.component.scss'
+  styleUrl: './voter-position.component.scss',
+  providers: [
+    VoterPositionService,
+    VoterPositionApiService
+  ]
 })
 export class VoterPositionComponent {
-  // protected voterService = inject(VoterService);
+  protected voterpositionService = inject(VoterPositionService);
   private dialogService = inject(DialogService);
   private confirmationService = inject(ConfirmationService);
   private messageService = inject(MessageService);
@@ -22,4 +28,37 @@ export class VoterPositionComponent {
   protected voterpositions!: VoterPositionInterface[];
 
   protected isLoading = false;
+
+  constructor() {
+    this.voterpositionService.onInit();
+  }
+
+  ngOnInit(): void {
+    this.arr_subs.push(
+      this.voterPositionDataSubscription()
+    );
+    this.voterpositionService.requestData();
+  }
+
+  ngOnDestroy(): void {
+    this.arr_subs.forEach(sub => {
+      sub.unsubscribe();
+    });
+  }
+
+  private voterPositionDataSubscription(): Subscription {
+    return this.voterpositionService.voterPositionData$.
+      pipe(
+        tap(() => {
+          this.voterpositions = [];
+          this.isLoading = true
+        }),
+        delay(500),
+        debounceTime(1000)
+      )
+      .subscribe((data) => {
+        this.voterpositions = data;
+        this.isLoading = false;
+      })
+  }
 }

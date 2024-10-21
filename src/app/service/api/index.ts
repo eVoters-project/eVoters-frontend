@@ -14,5 +14,8 @@ export * from './settings/voter/voter-base/voter-base-api.service';
 export * from './settings/voter/voter-influence/voter-influence-api.service';
 export * from './settings/voter/voter-influence-sub/voter-influence-sub-api.service';
 export * from './settings/voter/voter-leader-sub/voter-leader-sub-api.service';
+export * from './settings/voter/voter-position/voter-position-api.service';
+export * from './settings/voter/voter-status/voter-status-api.service';
+export * from './settings/voter/voter-type/voter-type-api.service';
 
 export * from './group-type/group-type-api.service';
