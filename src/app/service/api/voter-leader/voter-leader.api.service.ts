@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { environment } from "../../../../environments/environment.development";
 import { HttpClient } from "@angular/common/http";
+import { VoterLeaderInterface } from "../../../interface";
 
 @Injectable()
 export class VoterLeaderApiService {
@@ -16,14 +17,14 @@ export class VoterLeaderApiService {
     return this.http.get(`${this.urlAPI}/setup-voter-leader/${id}`);
   }
 
-  // createVoterLeader(data: VoterInterface) {
-  //   return this.http.post(`${this.urlAPI}/setup-voter-leader`, data);
-  // }
+  createVoterLeader(data: VoterLeaderInterface) {
+    return this.http.post(`${this.urlAPI}/setup-voter-leader`, data);
+  }
 
-  // updateVoterLeader(data: Partial<VoterInterface>) {
-  //   const { id, ...payload } = data;
-  //   return this.http.patch(`${this.urlAPI}/setup-voter-leader/${id}`, payload);
-  // }
+  updateVoterLeader(data: Partial<VoterLeaderInterface>) {
+    const { id, ...payload } = data;
+    return this.http.patch(`${this.urlAPI}/setup-voter-leader/${id}`, payload);
+  }
 
   deleteVoterLeader(id: string) {
     return this.http.delete(`${this.urlAPI}/setup-voter-leader/${id}`);
