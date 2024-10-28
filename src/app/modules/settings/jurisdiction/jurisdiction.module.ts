@@ -13,6 +13,11 @@ import { JurisdictionRegionComponent } from "./jurisdiction-region/jurisdiction-
 import { TableModule } from "primeng/table";
 import { DialogService } from "primeng/dynamicdialog";
 import { ConfirmationService, MessageService } from "primeng/api";
+import { JurisdictionBarangayUpsertComponent } from './jurisdiction-barangay-upsert/jurisdiction-barangay-upsert.component';
+import { JurisdictionPurokUpsertComponent } from './jurisdiction-purok-upsert/jurisdiction-purok-upsert.component';
+import { JurisdictionLguUpsertComponent } from './jurisdiction-lgu-upsert/jurisdiction-lgu-upsert.component';
+import { JurisdictionProvinceUpsertComponent } from './jurisdiction-province-upsert/jurisdiction-province-upsert.component';
+import { JurisdictionRegionUpsertComponent } from './jurisdiction-region-upsert/jurisdiction-region-upsert.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +26,12 @@ import { ConfirmationService, MessageService } from "primeng/api";
     JurisdictionBarangayComponent,
     JurisdictionLguComponent,
     JurisdictionProvinceComponent,
-    JurisdictionRegionComponent
+    JurisdictionRegionComponent,
+    JurisdictionBarangayUpsertComponent,
+    JurisdictionPurokUpsertComponent,
+    JurisdictionLguUpsertComponent,
+    JurisdictionProvinceUpsertComponent,
+    JurisdictionRegionUpsertComponent
   ],
   imports: [
     CommonModule,

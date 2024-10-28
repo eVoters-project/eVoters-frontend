@@ -16,18 +16,34 @@ import { TableModule } from "primeng/table";
 import { ToastModule } from "primeng/toast";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { DialogService } from "primeng/dynamicdialog";
+import { VoterBaseUpsertComponent } from "./voter-base-upsert/voter-base-upsert.component";
+import { VoterInfluenceUpsertComponent } from "./voter-influence-upsert/voter-influence-upsert.component";
+import { VoterLeaderUpsertComponent } from "./voter-leader-upsert/voter-leader-upsert.component";
+import { VoterLeaderSubUpsertComponent } from "./voter-leader-sub-upsert/voter-leader-sub-upsert.component";
+import { VoterPositionUpsertComponent } from "./voter-position-upsert/voter-position-upsert.component";
+import { VoterStatusUpsertComponent } from "./voter-status-upsert/voter-status-upsert.component";
+import { VoterTypeUpsertComponent } from "./voter-type-upsert/voter-type-upsert.component";
+import { VoterInfluenceSubUpsertComponent } from "./voter-influence-sub-upsert/voter-influence-sub-upsert.component";
 
 @NgModule({
   declarations: [
     IndexComponent,
     VoterBaseComponent,
+    VoterBaseUpsertComponent,
     VoterInfluenceComponent,
+    VoterInfluenceUpsertComponent,
     VoterInfluenceSubComponent,
+    VoterInfluenceSubUpsertComponent,
     VoterLeaderComponent,
+    VoterLeaderUpsertComponent,
     VoterLeaderSubComponent,
+    VoterLeaderSubUpsertComponent,
     VoterPositionComponent,
+    VoterPositionUpsertComponent,
     VoterStatusComponent,
-    VoterTypeComponent
+    VoterStatusUpsertComponent,
+    VoterTypeComponent,
+    VoterTypeUpsertComponent
   ],
   imports: [
     CommonModule,

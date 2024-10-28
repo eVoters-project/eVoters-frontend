@@ -2,6 +2,21 @@
 <p-toast />
 <div class="card">
 
+  <div class="flex flex-row justify-content-between">
+    <h3 class="title">Voter-Base List</h3>
+
+    <div class="flex justify-content-between">
+      <div></div>
+      <p-button
+        pRipple
+        label="Entry"
+        [text]="true"
+        [rounded]="true"
+        icon="pi pi-plus" />
+
+    </div>
+  </div>
+
   <p-table
     [columns]="cols"
     [value]="voterbases"
