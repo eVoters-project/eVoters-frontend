@@ -1,1 +1,56 @@
-<p>jurisdiction-lgu-upsert works!</p>
+@if (isLoading) {
+  <div class="loading">
+    <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+    <span>Please wait...</span>
+  </div>
+}
+@else {
+  <p-scrollPanel class="flex flex-column gap-1" [formGroup]="rf">
+    <h4>LGU Info.</h4>
+
+    <div class="flex flex-column gap-2">
+      <label for="code">Code</label>
+      <input id="code"
+        pInputText type="text"
+        class="outline-none"
+        formControlName="code" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="name">Name</label>
+      <input id="name"
+        pInputText type="text"
+        class="outline-none"
+        formControlName="name" />
+    </div>
+
+    <div class="flex flex-auto flex-column gap-2">
+      <label for="gender">Province</label>
+      <p-dropdown id="gender"
+        appendTo="body"
+        optionLabel="name"
+        [options]="provinces"
+        [style]="{ width: '100%' }" formControlName="area_province" />
+    </div>
+
+    <div class="flex flex-auto flex-column gap-2">
+      <label for="gender">Status</label>
+      <p-dropdown id="gender"
+        appendTo="body"
+        [options]="JURISDICTION_STATUS"
+        [style]="{ width: '100%' }"
+        formControlName="status" />
+    </div>
+
+  </p-scrollPanel>
+
+  <div class="flex justify-content-start">
+    <button
+      pButton
+      pRipple
+      [loading]="isSaving"
+      label="Save"
+      (click)="lguSave()">
+    </button>
+  </div>
+}

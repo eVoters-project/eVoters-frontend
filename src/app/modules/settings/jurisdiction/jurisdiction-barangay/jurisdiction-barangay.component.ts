@@ -6,6 +6,7 @@ import { BarangayInterface } from '../../../../interface';
 import { JurisdictionBarangayColumns } from '../definitions/jurisdiction-barangay.columns';
 import { JurisdictionBarangayService } from '../service';
 import { BarangayApiService } from '../../../../service/api';
+import { JurisdictionBarangayUpsertComponent } from '../jurisdiction-barangay-upsert/jurisdiction-barangay-upsert.component';
 
 @Component({
   selector: 'app-jurisdiction-barangay',
@@ -45,6 +46,19 @@ export class JurisdictionBarangayComponent implements OnInit, OnDestroy {
     this.arr_subs.forEach(sub => {
       sub.unsubscribe();
     });
+  }
+
+  protected barangayEntry() {
+    const ref = this.dialogService
+      .open(JurisdictionBarangayUpsertComponent, {
+        header: 'New Barangay',
+        footer: ' ',
+        position: 'right',
+        contentStyle: { overflow: 'auto' },
+        modal: true,
+        width: '45rem',
+        height: 'calc(100vh - 100px)'
+      })
   }
 
   private voterDataSubscription(): Subscription {

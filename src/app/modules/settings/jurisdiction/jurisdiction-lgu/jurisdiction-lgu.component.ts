@@ -6,6 +6,7 @@ import { LGUInterface } from '../../../../interface';
 import { JurisdictionLguColumns } from '../definitions/jurisdiction-lgu.columns';
 import { JurisdictionLGUService } from '../service';
 import { LGUApiService } from '../../../../service/api';
+import { JurisdictionLguUpsertComponent } from '../jurisdiction-lgu-upsert/jurisdiction-lgu-upsert.component';
 
 @Component({
   selector: 'app-jurisdiction-lgu',
@@ -45,6 +46,19 @@ export class JurisdictionLguComponent implements OnInit, OnDestroy {
     this.arr_subs.forEach(sub => {
       sub.unsubscribe();
     });
+  }
+
+  protected lguEntry() {
+    const ref = this.dialogService
+      .open(JurisdictionLguUpsertComponent, {
+        header: 'New LGU',
+        footer: ' ',
+        position: 'right',
+        contentStyle: { overflow: 'auto' },
+        modal: true,
+        width: '45rem',
+        height: 'calc(100vh - 100px)'
+      })
   }
 
   private voterDataSubscription(): Subscription {

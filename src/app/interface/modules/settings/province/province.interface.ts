@@ -1,9 +1,9 @@
 import { RegionInterface } from "../region/region.interface";
 
 export interface ProvinceInterface {
-  id: string;
-  code: string;
-  name: string;
-  area_region: Partial<RegionInterface>;
-  status: string;
+  id?: string | null;
+  code?: string | null;
+  name?: string | null;
+  area_region?: any;
+  status?: string | null;
 }

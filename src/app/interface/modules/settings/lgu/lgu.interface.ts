@@ -1,9 +1,9 @@
 import { ProvinceInterface } from "../province/province.interface";
 
 export interface LGUInterface {
-  id: string;
-  code: string;
-  name: string;
-  area_province: Partial<ProvinceInterface>;
-  status: string;
+  id?: string | null;
+  code?: string | null;
+  name?: string | null;
+  area_province?: any;
+  status?: string | null;
 }

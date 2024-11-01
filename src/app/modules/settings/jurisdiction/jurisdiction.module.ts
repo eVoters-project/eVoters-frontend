@@ -18,6 +18,10 @@ import { JurisdictionPurokUpsertComponent } from './jurisdiction-purok-upsert/ju
 import { JurisdictionLguUpsertComponent } from './jurisdiction-lgu-upsert/jurisdiction-lgu-upsert.component';
 import { JurisdictionProvinceUpsertComponent } from './jurisdiction-province-upsert/jurisdiction-province-upsert.component';
 import { JurisdictionRegionUpsertComponent } from './jurisdiction-region-upsert/jurisdiction-region-upsert.component';
+import { DropdownModule } from "primeng/dropdown";
+import { ScrollPanelModule } from "primeng/scrollpanel";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { InputTextModule } from "primeng/inputtext";
 
 @NgModule({
   declarations: [
@@ -35,11 +39,16 @@ import { JurisdictionRegionUpsertComponent } from './jurisdiction-region-upsert/
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     SettingsJurisdictionRoutingModule,
     SettingsSharedModule,
     ToastModule,
     ConfirmDialogModule,
-    TableModule
+    TableModule,
+    DropdownModule,
+    ScrollPanelModule,
+    InputTextModule
   ],
   providers: [
     DialogService,

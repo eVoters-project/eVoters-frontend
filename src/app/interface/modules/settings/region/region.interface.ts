@@ -1,6 +1,6 @@
 export interface RegionInterface {
-  id: string;
-  code: string;
-  name: string;
-  status: string;
+  id?: string | null;
+  code?: string | null;
+  name?: string | null;
+  status?: string | null;
 }

@@ -6,6 +6,7 @@ import { RegionInterface } from '../../../../interface';
 import { JurisdictionRegionColumns } from '../definitions/jurisdiction-region.columns';
 import { JurisdictionRegionService } from '../service';
 import { RegionApiService } from '../../../../service/api';
+import { JurisdictionRegionUpsertComponent } from '../jurisdiction-region-upsert/jurisdiction-region-upsert.component';
 
 @Component({
   selector: 'app-jurisdiction-region',
@@ -45,6 +46,19 @@ export class JurisdictionRegionComponent implements OnInit, OnDestroy {
     this.arr_subs.forEach(sub => {
       sub.unsubscribe();
     });
+  }
+
+  protected regionEntry() {
+    const ref = this.dialogService
+      .open(JurisdictionRegionUpsertComponent, {
+        header: 'New Region',
+        footer: ' ',
+        position: 'right',
+        contentStyle: { overflow: 'auto' },
+        modal: true,
+        width: '45rem',
+        height: 'calc(100vh - 100px)'
+      })
   }
 
   private regionDataSubscription(): Subscription {

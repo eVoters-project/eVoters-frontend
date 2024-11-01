@@ -6,6 +6,7 @@ import { ProvinceInterface } from '../../../../interface';
 import { JurisdictionProvinceColumns } from '../definitions/jurisdiction-province.columns';
 import { JurisdictionProvinceService } from '../service';
 import { ProvinceApiService } from '../../../../service/api';
+import { JurisdictionProvinceUpsertComponent } from '../jurisdiction-province-upsert/jurisdiction-province-upsert.component';
 
 @Component({
   selector: 'app-jurisdiction-province',
@@ -45,6 +46,19 @@ export class JurisdictionProvinceComponent implements OnInit, OnDestroy {
     this.arr_subs.forEach(sub => {
       sub.unsubscribe();
     });
+  }
+
+  protected provinceEntry() {
+    const ref = this.dialogService
+      .open(JurisdictionProvinceUpsertComponent, {
+        header: 'New Province',
+        footer: ' ',
+        position: 'right',
+        contentStyle: { overflow: 'auto' },
+        modal: true,
+        width: '45rem',
+        height: 'calc(100vh - 100px)'
+      })
   }
 
   private provinceDataSubscription(): Subscription {

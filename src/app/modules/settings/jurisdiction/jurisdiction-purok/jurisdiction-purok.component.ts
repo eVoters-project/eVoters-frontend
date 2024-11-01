@@ -6,6 +6,7 @@ import { PurokInterface } from '../../../../interface';
 import { JurisdictionPurokColumns } from '../definitions/jurisdiction-purok.columns';
 import { PurokApiService } from '../../../../service/api';
 import { JurisdictionPurokService } from '../service';
+import { JurisdictionPurokUpsertComponent } from '../jurisdiction-purok-upsert/jurisdiction-purok-upsert.component';
 
 @Component({
   selector: 'app-jurisdiction-purok',
@@ -45,6 +46,19 @@ export class JurisdictionPurokComponent implements OnInit, OnDestroy {
     this.arr_subs.forEach(sub => {
       sub.unsubscribe();
     });
+  }
+
+  protected PurokEntry() {
+    const ref = this.dialogService
+      .open(JurisdictionPurokUpsertComponent, {
+        header: 'New Purok',
+        footer: ' ',
+        position: 'right',
+        contentStyle: { overflow: 'auto' },
+        modal: true,
+        width: '45rem',
+        height: 'calc(100vh - 100px)'
+      })
   }
 
   private voterDataSubscription(): Subscription {
