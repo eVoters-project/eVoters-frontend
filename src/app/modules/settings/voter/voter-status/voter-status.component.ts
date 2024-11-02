@@ -6,6 +6,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { debounceTime, delay, Subscription, tap } from 'rxjs';
 import { VoterStatusService } from '../service';
 import { VoterStatusApiService } from '../../../../service/api';
+import { VoterStatusUpsertComponent } from '../voter-status-upsert/voter-status-upsert.component';
 
 @Component({
   selector: 'app-voter-status',
@@ -44,6 +45,19 @@ export class VoterStatusComponent {
     this.arr_subs.forEach(sub => {
       sub.unsubscribe();
     });
+  }
+
+  protected voterStatusEntry() {
+    const ref = this.dialogService
+      .open(VoterStatusUpsertComponent, {
+        header: 'New Voter Status',
+        footer: ' ',
+        position: 'right',
+        contentStyle: { overflow: 'auto' },
+        modal: true,
+        width: '45rem',
+        height: 'calc(100vh - 100px)'
+      })
   }
 
   private voterStatusDataSubscription(): Subscription {

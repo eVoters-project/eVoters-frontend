@@ -6,6 +6,7 @@ import { VoterBaseColumns } from '../definition/voter-base.columns';
 import { VoterBaseInterface } from '../../../../interface';
 import { VoterBaseService } from '../service';
 import { VoterBaseApiService } from '../../../../service/api';
+import { VoterBaseUpsertComponent } from '../voter-base-upsert/voter-base-upsert.component';
 
 @Component({
   selector: 'app-voter-base',
@@ -44,6 +45,19 @@ export class VoterBaseComponent implements OnInit, OnDestroy {
     this.arr_subs.forEach(sub => {
       sub.unsubscribe();
     });
+  }
+
+  protected voterBaseEntry() {
+    const ref = this.dialogService
+      .open(VoterBaseUpsertComponent, {
+        header: 'New Voter Base',
+        footer: ' ',
+        position: 'right',
+        contentStyle: { overflow: 'auto' },
+        modal: true,
+        width: '45rem',
+        height: 'calc(100vh - 100px)'
+      })
   }
 
   private voterBaseDataSubscription(): Subscription {

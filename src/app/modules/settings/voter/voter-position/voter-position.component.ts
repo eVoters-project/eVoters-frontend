@@ -6,6 +6,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { debounceTime, delay, Subscription, tap } from 'rxjs';
 import { VoterPositionService } from '../service';
 import { VoterPositionApiService } from '../../../../service/api';
+import { VoterPositionUpsertComponent } from '../voter-position-upsert/voter-position-upsert.component';
 
 @Component({
   selector: 'app-voter-position',
@@ -44,6 +45,19 @@ export class VoterPositionComponent {
     this.arr_subs.forEach(sub => {
       sub.unsubscribe();
     });
+  }
+
+  protected voterPositionEntry() {
+    const ref = this.dialogService
+      .open(VoterPositionUpsertComponent, {
+        header: 'New Voter Position',
+        footer: ' ',
+        position: 'right',
+        contentStyle: { overflow: 'auto' },
+        modal: true,
+        width: '45rem',
+        height: 'calc(100vh - 100px)'
+      })
   }
 
   private voterPositionDataSubscription(): Subscription {

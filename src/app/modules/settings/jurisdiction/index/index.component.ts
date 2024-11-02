@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MenuInterface } from '../../../layout/interface/menu.interface';
 
 @Component({
-  selector: 'app-index',
+  selector: 'app-settings-jurisdiction-index',
   templateUrl: './index.component.html',
   styleUrl: './index.component.scss'
 })

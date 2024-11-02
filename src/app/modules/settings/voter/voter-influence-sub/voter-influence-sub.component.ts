@@ -6,6 +6,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { debounceTime, delay, Subscription, tap } from 'rxjs';
 import { VoterInfluenceSubService } from '../service';
 import { VoterInfluenceSubApiService } from '../../../../service/api';
+import { VoterInfluenceSubUpsertComponent } from '../voter-influence-sub-upsert/voter-influence-sub-upsert.component';
 
 @Component({
   selector: 'app-voter-influence-sub',
@@ -44,6 +45,19 @@ export class VoterInfluenceSubComponent implements OnInit, OnDestroy {
     this.arr_subs.forEach(sub => {
       sub.unsubscribe();
     });
+  }
+
+  protected voterInfluenceSubEntry() {
+    const ref = this.dialogService
+      .open(VoterInfluenceSubUpsertComponent, {
+        header: 'New Voter Influence-Sub',
+        footer: ' ',
+        position: 'right',
+        contentStyle: { overflow: 'auto' },
+        modal: true,
+        width: '45rem',
+        height: 'calc(100vh - 100px)'
+      })
   }
 
   private voterInfluenceSubDataSubscription(): Subscription {

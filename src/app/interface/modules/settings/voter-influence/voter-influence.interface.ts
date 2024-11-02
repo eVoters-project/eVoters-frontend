@@ -1,8 +1,8 @@
 export interface VoterInfluenceInterface {
-  id: string;
-  code: string;
-  description: string;
-  remarks: string;
-  status: string;
-  voter_base: string;
+  id?: string | null;
+  code?: string | null;
+  description?: string | null;
+  remarks?: string | null;
+  status?: string | null;
+  voter_base?: string | null;
 }

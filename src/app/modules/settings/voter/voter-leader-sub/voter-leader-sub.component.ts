@@ -6,6 +6,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { debounceTime, delay, Subscription, tap } from 'rxjs';
 import { VoterLeaderSubService } from '../service';
 import { VoterLeaderSubApiService } from '../../../../service/api';
+import { VoterLeaderSubUpsertComponent } from '../voter-leader-sub-upsert/voter-leader-sub-upsert.component';
 
 @Component({
   selector: 'app-voter-leader-sub',
@@ -44,6 +45,19 @@ export class VoterLeaderSubComponent {
     this.arr_subs.forEach(sub => {
       sub.unsubscribe();
     });
+  }
+
+  protected voterLeaderSubEntry() {
+    const ref = this.dialogService
+      .open(VoterLeaderSubUpsertComponent, {
+        header: 'New Voter Leader-Sub',
+        footer: ' ',
+        position: 'right',
+        contentStyle: { overflow: 'auto' },
+        modal: true,
+        width: '45rem',
+        height: 'calc(100vh - 100px)'
+      })
   }
 
   private voterLeaderSubDataSubscription(): Subscription {

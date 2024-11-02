@@ -24,6 +24,11 @@ import { VoterPositionUpsertComponent } from "./voter-position-upsert/voter-posi
 import { VoterStatusUpsertComponent } from "./voter-status-upsert/voter-status-upsert.component";
 import { VoterTypeUpsertComponent } from "./voter-type-upsert/voter-type-upsert.component";
 import { VoterInfluenceSubUpsertComponent } from "./voter-influence-sub-upsert/voter-influence-sub-upsert.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { InputTextModule } from "primeng/inputtext";
+import { ButtonModule } from "primeng/button";
+import { DropdownModule } from "primeng/dropdown";
+import { InputTextareaModule } from "primeng/inputtextarea";
 
 @NgModule({
   declarations: [
@@ -47,11 +52,17 @@ import { VoterInfluenceSubUpsertComponent } from "./voter-influence-sub-upsert/v
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     SettingVoterRoutingModule,
     SettingsSharedModule,
     ToastModule,
     ConfirmDialogModule,
-    TableModule
+    TableModule,
+    InputTextModule,
+    ButtonModule,
+    DropdownModule,
+    InputTextareaModule
   ],
   providers: [
     DialogService,

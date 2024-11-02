@@ -1,5 +1,5 @@
 export interface VoterBaseInterface {
-  id: string;
-  code: string;
-  description: string;
+  id?: string | null;
+  code?: string | null;
+  description?: string | null;
 }

@@ -1,10 +1,10 @@
 import { VoterLeaderSubInterface } from "../voter-leader-sub/voter-leader-sub.interface";
 
 export interface VoterLeaderInterface {
-  id: string;
-  code: string;
-  description: string;
-  status: string;
-  remarks: string;
-  voter_leader_sub: Partial<VoterLeaderSubInterface>;
+  id?: string | null;
+  code?: string | null;
+  description?: string | null;
+  status?: string | null;
+  remarks?: string | null;
+  voter_leader_sub?: any;
 }

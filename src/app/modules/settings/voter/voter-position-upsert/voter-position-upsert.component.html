@@ -1,1 +1,47 @@
-<p>voter-position-upsert works!</p>
+@if (isLoading) {
+  <div class="loading">
+    <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+    <span>Please wait...</span>
+  </div>
+}
+@else {
+  <p-scrollPanel class="flex flex-column gap-1" [formGroup]="rf">
+    <h4>Voter Position Info.</h4>
+
+    <div class="flex flex-column gap-2">
+      <label for="code">Code</label>
+      <input id="code"
+        pInputText type="text"
+        class="outline-none"
+        formControlName="code" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="name">Description</label>
+      <input id="name"
+        pInputText type="text"
+        class="outline-none"
+        formControlName="description" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="status">Status</label>
+      <p-dropdown id="status"
+        appendTo="body"
+        [options]="VOTER_POSITION_STATUS"
+        [style]="{ width: '100%' }"
+        formControlName="status" />
+    </div>
+
+  </p-scrollPanel>
+
+  <div class="flex justify-content-start">
+    <button
+      pButton
+      pRipple
+      [loading]="isSaving"
+      label="Save"
+      (click)="voterPositionSave()">
+    </button>
+  </div>
+}
