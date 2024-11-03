@@ -20,4 +20,5 @@ export * from './settings/voter/voter-type/voter-type-api.service';
 
 export * from './group-type/group-type-api.service';
 
-export * from './settings/election/election-position.api.service';
+export * from './settings/election/election-position/election-position.api.service';
+export * from './settings/election/election-schedule/election-schedule.api.service';

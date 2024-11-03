@@ -1,1 +1,59 @@
-<p>election-schedule-upsert works!</p>
+@if (isLoading) {
+  <div class="loading">
+    <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+    <span>Please wait...</span>
+  </div>
+}
+@else {
+  <p-scrollPanel class="flex flex-column gap-1" [formGroup]="rf">
+    <h4>Elective Schedule Info.</h4>
+
+    <div class="flex flex-column gap-2">
+      <label for="type">Election Type</label>
+      <p-dropdown id="type"
+        appendTo="body"
+        [options]="ELECTION_SCHEDULE_TYPES"
+        [style]="{ width: '100%' }"
+        formControlName="type" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="date">Election Date</label>
+      <p-calendar id="date"
+        [showIcon]="true"
+        class="outline-none"
+        [inputStyle]="{ width: '100%'}"
+        formControlName="date" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="status">Status</label>
+      <p-dropdown id="status"
+        appendTo="body"
+        [options]="ELECTION_SCHEDULE_STATUS"
+        [style]="{ width: '100%' }"
+        formControlName="status" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="remarks">Remarks</label>
+      <textarea
+        id="remarks"
+        pInputTextarea
+        formControlName="remarks"
+        [style]="{ 'width': '100%' }">
+      </textarea>
+    </div>
+
+  </p-scrollPanel>
+
+  <div class="flex justify-content-start">
+    <button
+      pButton
+      pRipple
+      [loading]="isSaving"
+      label="Save"
+      (click)="electionScheduleSave()">
+    </button>
+  </div>
+}

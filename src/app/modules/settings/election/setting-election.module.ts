@@ -16,6 +16,8 @@ import { ConfirmationService, MessageService } from "primeng/api";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { DropdownModule } from "primeng/dropdown";
 import { InputTextModule } from "primeng/inputtext";
+import { CalendarModule } from "primeng/calendar";
+import { InputTextareaModule } from "primeng/inputtextarea";
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { InputTextModule } from "primeng/inputtext";
     ButtonModule,
     ConfirmDialogModule,
     DropdownModule,
-    InputTextModule
+    InputTextModule,
+    CalendarModule,
+    InputTextareaModule
   ],
   providers: [
     DialogService,

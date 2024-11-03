@@ -36,3 +36,5 @@ export * from './modules/settings/voter-status/voter-status.interface';
 export * from './modules/settings/voter-type/voter-type.interface';
 
 export * from './modules/settings/election-position/election-position.interface';
+export * from './modules/settings/election-schedule/election-schedule.initerface';
+export * from './modules/settings/election-schedule-positions/election-schedule-position.interface';
