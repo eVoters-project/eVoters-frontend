@@ -34,3 +34,5 @@ export * from './modules/settings/voter-leader-sub/voter-leader-sub.interface';
 export * from './modules/settings/voter-position/voter-position.interface';
 export * from './modules/settings/voter-status/voter-status.interface';
 export * from './modules/settings/voter-type/voter-type.interface';
+
+export * from './modules/settings/election-position/election-position.interface';

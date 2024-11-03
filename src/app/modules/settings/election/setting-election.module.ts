@@ -7,6 +7,15 @@ import { ElectionScheduleUpsertComponent } from './election-schedule-upsert/elec
 import { ElectionPositionUpsertComponent } from './election-position-upsert/election-position-upsert.component';
 import { ElectionScheduleComponent } from "./election-schedule/election-schedule.component";
 import { ElectionPositionComponent } from "./election-position/election-position.component";
+import { ToastModule } from "primeng/toast";
+import { TableModule } from "primeng/table";
+import { ButtonModule } from "primeng/button";
+import { ConfirmDialogModule } from "primeng/confirmdialog";
+import { DialogService } from "primeng/dynamicdialog";
+import { ConfirmationService, MessageService } from "primeng/api";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { DropdownModule } from "primeng/dropdown";
+import { InputTextModule } from "primeng/inputtext";
 
 @NgModule({
   declarations: [
@@ -18,8 +27,21 @@ import { ElectionPositionComponent } from "./election-position/election-position
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     SettingElectionRoutingModule,
-    SettingsSharedModule
+    SettingsSharedModule,
+    ToastModule,
+    TableModule,
+    ButtonModule,
+    ConfirmDialogModule,
+    DropdownModule,
+    InputTextModule
+  ],
+  providers: [
+    DialogService,
+    ConfirmationService,
+    MessageService
   ]
 })
 export class SettingElectionModule { }
