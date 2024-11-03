@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "^18.2.10",
     "@angular/router": "^18.2.10",
     "@ngrx/effects": "^18.1.1",
+    "@ngrx/operators": "^18.0.0",
     "@ngrx/store": "^18.1.1",
     "@ngrx/store-devtools": "^18.1.1",
     "chart.js": "^4.4.3",
@@ -28,11 +29,10 @@
     "node": "^20.13.0",
     "primeflex": "^3.3.1",
     "primeicons": "^7.0.0",
-    "primeng": "^17.16.1",
+    "primeng": "^17.18.11",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.14.10",
-    "@ngrx/operators": "^18.0.0"
+    "zone.js": "~0.14.10"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^18.2.11",
