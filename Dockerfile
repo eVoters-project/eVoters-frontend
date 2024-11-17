@@ -1,12 +1,12 @@
 # #stage 1
-FROM node:22-alpine As development
+FROM node:22-alpine AS development
 
 WORKDIR /app
 
 RUN apk add --no-cache g++ make python3
 
 ARG ENV_BACKEND_URI
-ENV ENV_BACKEND_URI = ${ENV_BACKEND_URI}
+ENV ENV_BACKEND_URI=${ENV_BACKEND_URI}
 
 COPY package*.json ./
 RUN npm install --force
