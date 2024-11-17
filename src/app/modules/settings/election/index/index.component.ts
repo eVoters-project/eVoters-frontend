@@ -15,6 +15,8 @@ export class IndexComponent {
       items: [
         { label: 'Schedule', icon: '', routerLink: ['schedule'] },
         { label: 'Position', icon: '', routerLink: ['position'] },
+        { label: 'Precinct', icon: '', routerLink: ['precinct'] },
+        { label: 'Candidate', icon: '', routerLink: ['candidate'] }
       ]
     }
   ]

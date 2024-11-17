@@ -1,0 +1,72 @@
+@if (isLoading) {
+  <div class="loading">
+    <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+    <span>Please wait...</span>
+  </div>
+}
+@else {
+  <p-scrollPanel class="flex flex-column gap-1" [formGroup]="rf">
+    <h4>Election Precinct Info.</h4>
+
+    <div class="flex flex-column gap-2">
+      <label for="code">Code (Precinct ID)</label>
+      <input id="code"
+        pInputText type="text"
+        class="outline-none"
+        formControlName="code" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="cluster">Cluster</label>
+      <p-inputNumber id="cluster"
+        inputId="integeronly"
+        class="outline-none"
+        formControlName="cluster" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="name">Sub-Cluster</label>
+      <input id="name"
+        pInputText type="text"
+        class="outline-none"
+        formControlName="sub_cluster" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="name">Polling Center</label>
+      <input id="name"
+        pInputText type="text"
+        class="outline-none"
+        formControlName="polling_center" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="barangay">Barangay</label>
+      <p-dropdown id="barangay"
+        appendTo="body"
+        optionLabel="name"
+        [options]="barangays"
+        [style]="{ width: '100%' }" formControlName="area_barangay" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="status">Status</label>
+      <p-dropdown id="status"
+        appendTo="body"
+        [options]="ELECTIVE_POSITION_STATUS"
+        [style]="{ width: '100%' }"
+        formControlName="status" />
+    </div>
+
+  </p-scrollPanel>
+
+  <div class="flex justify-content-start">
+    <button
+      pButton
+      pRipple
+      [loading]="isSaving"
+      label="Save"
+      (click)="electionPrecinctSave()">
+    </button>
+  </div>
+}

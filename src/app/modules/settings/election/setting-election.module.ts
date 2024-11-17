@@ -18,6 +18,11 @@ import { DropdownModule } from "primeng/dropdown";
 import { InputTextModule } from "primeng/inputtext";
 import { CalendarModule } from "primeng/calendar";
 import { InputTextareaModule } from "primeng/inputtextarea";
+import { ElectionPrecinctComponent } from "./election-precinct/election-precinct.component";
+import { ElectionPrecinctUpsertComponent } from "./election-precinct-upsert/election-precinct-upsert.component";
+import { ElectionCandidateComponent } from "./election-candidate/election-candidate.component";
+import { ElectionCandidateUpsertComponent } from "./election-candidate-upsert/election-candidate-upsert.component";
+import { InputNumberModule } from "primeng/inputnumber";
 
 @NgModule({
   declarations: [
@@ -25,7 +30,11 @@ import { InputTextareaModule } from "primeng/inputtextarea";
     ElectionScheduleComponent,
     ElectionScheduleUpsertComponent,
     ElectionPositionComponent,
-    ElectionPositionUpsertComponent
+    ElectionPositionUpsertComponent,
+    ElectionPrecinctComponent,
+    ElectionPrecinctUpsertComponent,
+    ElectionCandidateComponent,
+    ElectionCandidateUpsertComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +49,8 @@ import { InputTextareaModule } from "primeng/inputtextarea";
     DropdownModule,
     InputTextModule,
     CalendarModule,
-    InputTextareaModule
+    InputTextareaModule,
+    InputNumberModule
   ],
   providers: [
     DialogService,
