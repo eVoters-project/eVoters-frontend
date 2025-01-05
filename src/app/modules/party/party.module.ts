@@ -20,6 +20,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { TabViewModule } from 'primeng/tabview';
+import { BadgeModule } from 'primeng/badge';
 
 
 @NgModule({
@@ -43,7 +45,9 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     TableModule,
     TagModule,
     ToastModule,
-    InputTextareaModule
+    InputTextareaModule,
+    TabViewModule,
+    BadgeModule
   ],
   providers: [
     ConfirmationService,

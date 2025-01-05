@@ -1,0 +1,94 @@
+@if (isLoading) {
+  <div class="loading">
+    <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+    <span>Please wait...</span>
+  </div>
+}
+@else {
+  <p-toast />
+  <p-scrollPanel class="flex flex-column gap-1 flex-auto" [formGroup]="rf">
+      <h4>Party Candidate Info.</h4>
+
+      <div class="flex flex-auto flex-column gap-2">
+        <label for="dateofbirth">Date</label>
+        <p-calendar id="dateofbirth"
+          [showIcon]="true"
+          class="outline-none"
+          [inputStyle]="{ width: '100%'}"
+          formControlName="date" />
+      </div>
+
+      <div class="flex flex-auto flex-column mt-1 gap-2">
+        <label for="schedule">Schedule</label>
+        <p-dropdown
+          name="schedule"
+          appendTo="body"
+          [options]="schedules!"
+          [loading]="schedules == null"
+          optionLabel="name"
+          [style]="{ width: '100%' }"
+          [showClear]="true"
+          formControlName="schedule" />
+      </div>
+
+      <div class="flex flex-auto flex-column mt-1 gap-2">
+        <label for="position">Position</label>
+        <p-dropdown
+          name="position"
+          appendTo="body"
+          [options]="positions!"
+          [loading]="positions == null"
+          optionLabel="name"
+          [style]="{ width: '100%' }"
+          [showClear]="true"
+          formControlName="position" />
+      </div>
+
+      <div class="flex flex-auto flex-column mt-1 gap-2">
+          <label for="party">Party</label>
+          <p-dropdown
+            name="party"
+            appendTo="body"
+            [options]="parties!"
+            [loading]="parties == null"
+            optionLabel="name"
+            [showClear]="true"
+            [style]="{ width: '100%' }"
+            formControlName="party" />
+      </div>
+
+      <div class="flex flex-auto flex-column mt-1 gap-2">
+        <label for="member-candidate">Member Candidate</label>
+        <p-dropdown
+          name="member-candidate"
+          appendTo="body"
+          [options]="partyMembers!"
+          [loading]="partyMembers == null"
+          optionLabel="name"
+          [showClear]="true"
+          [style]="{ width: '100%' }"
+          formControlName="party_member" />
+    </div>
+
+      <div class="flex flex-auto flex-column mt-1 gap-2">
+          <label for="status">Status</label>
+          <p-dropdown
+            name="status"
+            appendTo="body"
+            [options]="status"
+            [style]="{ width: '100%' }"
+            formControlName="status"
+            [showClear]="true" />
+      </div>
+  </p-scrollPanel>
+
+  <div class="flex justify-content-start gap-2">
+      <button
+        pButton
+        pRipple
+        [loading]="isSaving"
+        label="Save"
+        (click)="candidateSave()">
+      </button>
+    </div>
+}

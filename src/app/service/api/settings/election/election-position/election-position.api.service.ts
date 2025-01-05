@@ -17,6 +17,10 @@ export class ElectionPositionApiService {
     return this.http.get(`${this.urlAPI}/setup-election-position/${id}`);
   }
 
+  getElectionPositionBySchedule(id: string) {
+    return this.http.get(`${this.urlAPI}/setup-election-position/schedule/${id}`);
+  }
+
   createElectionPosition(data: ElectionPositionInterface) {
     return this.http.post(`${this.urlAPI}/setup-election-position`, data);
   }

@@ -5,7 +5,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { PartyService } from '../party.service';
 import { debounceTime, delay, Subscription, take, tap } from 'rxjs';
 import { PartyEntryComponent } from '../party-entry/party-entry.component';
-import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
+import { ConfirmationService, MenuItem, MessageService, PrimeIcons } from 'primeng/api';
 
 @Component({
   selector: 'ev-party-index',
@@ -35,6 +35,10 @@ export class IndexComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   ]
 
+  protected expandedRows = {};
+
+  menuItems: MenuItem[] | undefined;
+
   constructor() {
     this.partyService.onInit();
   }
@@ -43,6 +47,12 @@ export class IndexComponent implements OnInit, OnDestroy, AfterViewInit {
     this.arr_subs.push(
       this.partyDataSubscription()
     );
+
+    this.menuItems = [
+      { label: 'Per Rank', icon: 'pi pi-chart-line', routerLink: 'per-rank', queryParams: {} },
+      { label: 'Per Location', icon: 'pi pi-map-marker', routerLink: 'per-location' },
+      { label: 'Per Position', icon: 'pi pi-face-smile', routerLink: 'per-position', disabled: true }
+    ];
   }
 
   ngOnDestroy(): void {

@@ -1,0 +1,62 @@
+@if (isLoading) {
+  <div class="loading">
+    <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+    <span>Please wait...</span>
+  </div>
+}
+@else {
+  <p-toast />
+  <p-scrollPanel class="flex flex-column gap-1 flex-auto" [formGroup]="rf">
+      <h4>Vote Tally Info.</h4>
+
+      <div class="flex flex-auto flex-row gap-2">
+        <div></div>
+        <p-dropdown
+          appendTo="body"
+          optionLabel="name"
+          [showClear]="true"
+          [style]="{ width: '100%' }" />
+      </div>
+
+      <div class="flex flex-auto flex-column gap-2">
+        <label for="dateofbirth">Date</label>
+        <p-calendar id="dateofbirth" [showIcon]="true" class="outline-none" [inputStyle]="{ width: '100%'}" formControlName="date_of_birth" />
+      </div>
+
+      <div class="flex flex-auto flex-column gap-2">
+          <label for="gender">Precinct</label>
+          <p-dropdown
+            appendTo="body"
+            optionLabel="name"
+            [showClear]="true"
+            [style]="{ width: '100%' }"
+            formControlName="precinct" />
+      </div>
+
+      <div class="flex flex-auto flex-column gap-2">
+          <label for="gender">Candidate</label>
+          <p-dropdown
+            appendTo="body"
+            optionLabel="Candidate"
+            [style]="{ width: '100%' }"
+            [showClear]="true"
+            formControlName="candidate" />
+      </div>
+
+      <div class="flex flex-auto flex-column gap-2">
+          <label for="gender">Count</label>
+          <p-inputNumber inputId="integeronly" formControlName="count"/>
+      </div>
+
+  </p-scrollPanel>
+
+  <div class="flex justify-content-start gap-2 mt-4">
+      <button
+        pButton
+        pRipple
+        [loading]="isSaving"
+        label="Save"
+        (click)="voteTallySave()">
+      </button>
+    </div>
+}

@@ -1,6 +1,7 @@
 export * from './voter/voter.api.service';
 export * from './map/voter-map-location.api.service';
 export * from './party/party.api.service';
+export * from './party-member/party-member.api.service';
 export * from './leader/leader.api.service';
 export * from './campaign/campaign.api.service';
 
@@ -23,3 +24,7 @@ export * from './group-type/group-type-api.service';
 export * from './settings/election/election-position/election-position.api.service';
 export * from './settings/election/election-schedule/election-schedule.api.service';
 export * from './settings/election/election-precinct/election-precinct.api.service';
+export * from './settings/election/election-candidate/election-candidate.api.service';
+
+export * from './vote-tally/vote-tally.api.service';
+export * from './candidate/candidate.api.service';

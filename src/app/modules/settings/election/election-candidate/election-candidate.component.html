@@ -1,1 +1,70 @@
-<p>election-candidate works!</p>
+<p-confirmDialog />
+<p-toast />
+<div class="card">
+
+  <div class="flex flex-row justify-content-between">
+    <h3 class="title">Election Candidate List</h3>
+
+    <div class="flex justify-content-between">
+      <div></div>
+      <p-button
+        pRipple
+        label="Add"
+        [text]="true"
+        [rounded]="true"
+        icon="pi pi-plus"
+        (onClick)="electionCandidateEntry();" />
+
+    </div>
+  </div>
+
+  <p-table
+    [columns]="cols"
+    [value]="electionCandidates"
+    [loading]="isLoading"
+    [rowHover]="true"
+    [rowsPerPageOptions]="[5, 10, 15]"
+    [rows]="10"
+    [paginator]="true"
+    selectionMode="single"
+    [scrollable]="true"
+    scrollHeight="425px"
+    [tableStyle]="{ 'min-width': '50rem' }">
+
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+          <th *ngFor="let col of columns" [style]="{ 'width': col.width }">
+              @if (col.field != 'id') {
+                {{ col.header }}
+              }
+          </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr [pSelectableRow]="rowData">
+            @for (col of columns; track $index) {
+              <td [width]="col.width">
+                @if (col.field != 'id') {
+                  @switch (col.field) {
+                    @default {
+                      {{ rowData[col.field] }}
+                    }
+                  }
+                }
+              </td>
+            }
+        </tr>
+    </ng-template>
+
+    <!-- empty message -->
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="5">
+          There are no election candidates available.
+        </td>
+      </tr>
+    </ng-template>
+
+  </p-table>
+
+</div>

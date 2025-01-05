@@ -2,9 +2,9 @@
 <p-toast />
 <div class="card">
   <div class="title-bar">
-    <h3 class="title">Parties</h3>
+    <h3 class="title">{{title}}</h3>
     <div class="title-bar-menu">
-        <p-button label="Add" (onClick)="partyEntry()"/>
+        <p-button label="Add" (onClick)="voteTallyEntry()"/>
     </div>
   </div>
 
@@ -13,16 +13,12 @@
 
   <p-table
       [columns]="cols"
-      dataKey="id"
-      [expandedRowKeys]="expandedRows"
-      [value]="parties ?? []"
+      [value]="voteTallies ?? []"
       [rowsPerPageOptions]="[5, 10, 15]"
       [rows]="10"
       [paginator]="true"
       [loading]="isLoading"
       [rowHover]="true"
-      [contextMenu]="cmParty"
-      [(contextMenuSelection)]="party"
       [tableStyle]="{ 'min-width': '50rem' }"
       styleClass="p-datatable-striped"
       >
@@ -31,7 +27,7 @@
         <ng-template pTemplate="caption">
           <div class="flex align-items-center justify-content-between">
             Party List
-            <p-button icon="pi pi-refresh" (onClick)="partyService.requestData();" />
+            <p-button icon="pi pi-refresh" (onClick)="voteTallyService.requestData();" />
           </div>
         </ng-template>
 
@@ -70,39 +66,7 @@
               }
             </tr>
         </ng-template>
-
-        <!-- row expansion -->
-        <ng-template pTemplate="rowexpansion" let-rowData>
-          <tr>
-            <td colspan="3">
-              <div class="card flex flex-column w-100 m-4">
-                <p-tabView>
-                  <p-tabPanel>
-                    <ng-template pTemplate="header">
-                      <div class="flex align-items-center gap-2">
-                        <span class="font-bold white-space-nowrap m-0">
-                            Members
-                        </span>
-                        <p-badge value="0" />
-                    </div>
-                    </ng-template>
-                  </p-tabPanel>
-                  <p-tabPanel>
-                    <ng-template pTemplate="header">
-                      <div class="flex align-items-center gap-2">
-                        <span class="font-bold white-space-nowrap m-0">
-                            Candidates
-                        </span>
-                        <p-badge value="0" />
-                    </div>
-                    </ng-template>
-                  </p-tabPanel>
-                </p-tabView>
-              </div>
-            </td>
-          </tr>
-        </ng-template>
     </p-table>
 </div>
 
-<p-contextMenu #cmParty [model]="gridContextMenus"></p-contextMenu>
+<!-- <p-contextMenu #cmParty [model]="gridContextMenus"></p-contextMenu> -->

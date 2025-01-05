@@ -36,6 +36,16 @@ export * from './modules/settings/voter-status/voter-status.interface';
 export * from './modules/settings/voter-type/voter-type.interface';
 
 export * from './modules/settings/election-position/election-position.interface';
+export * from './modules/settings/election-position/request-election-position.interface';
 export * from './modules/settings/election-schedule/election-schedule.initerface';
+export * from './modules/settings/election-schedule/response-election-schedule.interface';
 export * from './modules/settings/election-schedule-positions/election-schedule-position.interface';
 export * from './modules/settings/election-precinct/election-precinct.interface';
+export * from './modules/settings/election-candidate/election-candidate.interface';
+
+export * from './modules/vote-tally/response-vote-tally.interface';
+export * from './modules/vote-tally/vote-tally.interface';
+
+export * from './modules/candidate/candidate.interface';
+export * from './modules/candidate/response-candidate.interface';
+export * from './modules/candidate/request-election-candidate.interface';

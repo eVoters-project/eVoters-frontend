@@ -28,8 +28,10 @@ export class MenuComponent implements OnInit {
           { label: 'Voters', icon: 'pi pi-slack', routerLink: ['/voters'] },
           { label: 'Leaders', icon: 'pi pi-crown', routerLink: ['/leaders'] },
           { label: 'Party', icon: 'pi pi-users', routerLink: ['parties'] },
+          { label: 'Candidate', icon: 'pi pi-users', routerLink: ['candidates'] },
           { label: 'Straw Vote', icon: 'pi pi-lightbulb', routerLink: ['straw-votes'] },
           { label: 'Vote Count', icon: 'pi pi-sort-numeric-down', routerLink: ['/vote-counts'] },
+          { label: 'Vote Tally', icon: 'pi pi-sort-numeric-down', routerLink: ['/vote-tally'] },
           { label: 'Campaign', icon: 'pi pi-chart-bar', routerLink: ['/campaigns'] },
           { label: 'Settings', icon: 'pi pi-cog', routerLink: ['/settings'] },
           { label: 'Logout', icon: 'pi pi-sign-out', routerLink: [''] }

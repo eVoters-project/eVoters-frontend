@@ -1,0 +1,77 @@
+@if (isLoading) {
+  <div class="loading">
+    <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+    <span>Please wait...</span>
+  </div>
+}
+@else {
+  <p-toast />
+  <p-scrollPanel class="flex flex-column gap-1 flex-auto" [formGroup]="rf">
+      <h4>Independent Candidate Info.</h4>
+
+      <div class="flex flex-auto flex-column gap-2">
+        <label for="dateofbirth">Date</label>
+        <p-calendar id="dateofbirth"
+          [showIcon]="true"
+          class="outline-none"
+          [inputStyle]="{ width: '100%'}"
+          formControlName="date" />
+      </div>
+
+      <div class="flex flex-auto flex-column mt-1 gap-2">
+        <label for="gender">Schedule</label>
+        <p-dropdown
+          appendTo="body"
+          [options]="schedules!"
+          [loading]="schedules == null"
+          optionLabel="name"
+          [style]="{ width: '100%' }"
+          [showClear]="true"
+          formControlName="schedule" />
+      </div>
+
+      <div class="flex flex-auto flex-column mt-1 gap-2">
+        <label for="gender">Position</label>
+        <p-dropdown
+          appendTo="body"
+          [options]="positions!"
+          [loading]="positions == null"
+          optionLabel="name"
+          [style]="{ width: '100%' }"
+          [showClear]="true"
+          formControlName="position" />
+      </div>
+
+      <div class="flex flex-auto flex-column mt-1 gap-2">
+          <label for="gender">Candidate</label>
+          <p-dropdown
+            appendTo="body"
+            [options]="voters!"
+            [loading]="voters == null"
+            optionLabel="name"
+            [showClear]="true"
+            [style]="{ width: '100%' }"
+            formControlName="voter" />
+      </div>
+
+      <div class="flex flex-auto flex-column mt-1 gap-2">
+          <label for="gender">Status</label>
+          <p-dropdown
+            appendTo="body"
+            [options]="status"
+            [style]="{ width: '100%' }"
+            formControlName="status"
+            [showClear]="true" />
+      </div>
+  </p-scrollPanel>
+
+  <div class="flex justify-content-start gap-2">
+      <button
+        pButton
+        pRipple
+        [loading]="isSaving"
+        label="Save"
+        (click)="candidateSave()">
+      </button>
+    </div>
+}

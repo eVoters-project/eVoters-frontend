@@ -34,6 +34,11 @@ export const routes: Routes = [
         title: 'E-Voters | Party'
       },
       {
+        path: 'candidates',
+        loadChildren: () => import('./modules/candidate/candidate.module').then(m => m.CandidateModule),
+        title: 'E-Voters | Candidates'
+      },
+      {
         path: 'settings',
         loadChildren: () => import('./modules/settings/settings.module').then(m => m.SettingsModule),
         title: 'E-Voters | Settings'
@@ -47,6 +52,11 @@ export const routes: Routes = [
         path: 'vote-counts',
         loadChildren: () => import('./modules/vote-count/vote-count.module').then(m => m.VoteCountModule),
         title: 'E-Voters | Vote-Count'
+      },
+      {
+        path: 'vote-tally',
+        loadChildren: () => import('./modules/vote-tally/vote-tally.module').then(m => m.VoteTallyModule),
+        title: 'E-Voters | Vote-Tally'
       },
       {
         path: 'voters',
