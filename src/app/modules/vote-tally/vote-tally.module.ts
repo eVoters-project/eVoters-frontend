@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
-import { IndexComponent } from "./index/index.component";
-import { EntryComponent } from "./entry/entry.component";
+import { IndexComponent } from "./components/index/index.component";
+import { EntryComponent } from "./components/entry/entry.component";
 import { VoteTallyRoutingModule } from "./vote-tally-routing.module";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";

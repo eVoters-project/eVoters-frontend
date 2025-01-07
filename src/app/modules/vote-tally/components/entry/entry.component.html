@@ -1,0 +1,109 @@
+@if (isLoading) {
+  <div class="loading">
+    <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+    <span>Please wait...</span>
+  </div>
+}
+@else {
+  <p-toast />
+  <p-scrollPanel class="flex flex-column gap-1 flex-auto" [formGroup]="rf">
+      <h4>Vote Tally Info.</h4>
+
+      <div class="flex flex-auto flex-column gap-2">
+        <label for="date-tally">Date Tally</label>
+        <p-calendar
+          id="dateofbirth"
+          [showIcon]="true"
+          class="outline-none"
+          [inputStyle]="{ width: '100%'}"
+          formControlName="date" />
+      </div>
+
+      <div class="flex flex-auto flex-column gap-2">
+        <label for="barangay">Barangay</label>
+        <p-dropdown
+          id="barangay"
+          appendTo="body"
+          optionLabel="name"
+          [options]="barangays!"
+          [loading]="barangays == null"
+          [showClear]="true"
+          [style]="{ width: '100%' }"
+          formControlName="barangay" />
+      </div>
+
+      <div class="flex flex-auto flex-column gap-2">
+        <label for="precinct">Precinct</label>
+        <p-dropdown
+          id="precinct"
+          appendTo="body"
+          optionLabel="name"
+          [options]="precincts!"
+          [loading]="precincts == null"
+          [showClear]="true"
+          [style]="{ width: '100%' }"
+          formControlName="precinct" />
+      </div>
+
+      <br />
+      <br />
+
+      <div class="flex flex-auto flex-column gap-2">
+        <label for="schedule">Schedule</label>
+        <p-dropdown
+          id="schedule"
+          appendTo="body"
+          optionLabel="name"
+          [options]="schedules!"
+          [loading]="schedules == null"
+          [showClear]="true"
+          [style]="{ width: '100%' }"
+          formControlName="schedule" />
+      </div>
+
+      <div class="flex flex-auto flex-column gap-2">
+        <label for="position">Position</label>
+        <p-dropdown
+          id="positon"
+          [options]="positions!"
+          [loading]="positions == null"
+          appendTo="body"
+          optionLabel="name"
+          [showClear]="true"
+          [style]="{ width: '100%' }"
+          formControlName="position" />
+      </div>
+
+      <div class="flex flex-auto flex-column gap-2">
+        <label for="candidate">Candidate</label>
+        <p-dropdown
+          id="candidate"
+          appendTo="body"
+          optionLabel="name"
+          [options]="candidates!"
+          [loading]="candidates == null"
+          [style]="{ width: '100%' }"
+          [showClear]="true"
+          formControlName="candidate" />
+    </div>
+
+    <div class="flex flex-auto flex-column gap-2">
+        <label for="count">Count</label>
+        <p-inputNumber
+          id="count"
+          inputId="integeronly"
+          formControlName="count" />
+    </div>
+
+  </p-scrollPanel>
+
+  <div class="flex justify-content-start gap-2 mt-4">
+      <button
+        pButton
+        pRipple
+        [loading]="isSaving"
+        label="Save"
+        (click)="voteTallySave()">
+      </button>
+    </div>
+}

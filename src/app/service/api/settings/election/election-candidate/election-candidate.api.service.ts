@@ -17,6 +17,10 @@ export class ElectionCandidateApiService {
     return this.http.get(`${this.urlAPI}/election-candidate/${id}`);
   }
 
+  getElectionCandidateByPosition(id: string) {
+    return this.http.get(`${this.urlAPI}/election-candidate/position/${id}`);
+  }
+
   createElectionCandidate(data: ElectionCandidateInterface) {
     return this.http.post(`${this.urlAPI}/election-candidate`, data);
   }

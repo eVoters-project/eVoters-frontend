@@ -45,6 +45,7 @@ export * from './modules/settings/election-candidate/election-candidate.interfac
 
 export * from './modules/vote-tally/response-vote-tally.interface';
 export * from './modules/vote-tally/vote-tally.interface';
+export * from './modules/vote-tally/request-vote-tally.interface';
 
 export * from './modules/candidate/candidate.interface';
 export * from './modules/candidate/response-candidate.interface';
