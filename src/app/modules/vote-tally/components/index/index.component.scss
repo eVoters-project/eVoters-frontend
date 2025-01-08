@@ -4,10 +4,11 @@
 
 .title-bar {
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
 .title-bar-menu {
   display: flex;
-  margin: 0 0 0 auto;
+  margin: auto 0 0 0;
 }

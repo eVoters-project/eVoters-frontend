@@ -18,6 +18,10 @@ export class VoteTallyApiService {
     return this.http.get(`${this.urlApi}/trx-election-tally/${id}`);
   }
 
+  getBySchedule(id: string) {
+    return this.http.get(`${this.urlApi}/trx-election-tally/schedule/${id}`);
+  }
+
   create(payload: any) {
     return this.http.post(`${this.urlApi}/trx-election-tally`, payload);
   }

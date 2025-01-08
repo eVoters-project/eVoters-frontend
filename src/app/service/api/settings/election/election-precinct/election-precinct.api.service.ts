@@ -17,6 +17,10 @@ export class ElectionPrecinctApiService {
     return this.http.get(`${this.urlAPI}/setup-election-precinct/${id}`);
   }
 
+  getElectionPrecinctByBarangay(id: string) {
+    return this.http.get(`${this.urlAPI}/setup-election-precinct/barangay/${id}`);
+  }
+
   createElectionPrecinct(data: ElectionPrecinctInterface) {
     return this.http.post(`${this.urlAPI}/setup-election-precinct`, data);
   }

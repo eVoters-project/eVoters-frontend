@@ -3,12 +3,33 @@
 <div class="card">
   <div class="title-bar">
     <h3 class="title">{{title}}</h3>
-    <div class="title-bar-menu">
-        <p-button label="Add" (onClick)="voteTallyEntry()"/>
+
+    <div class="title-bar-menu mb-2">
+        <p-button
+          label="Add"
+          styleClass="w-5rem"
+          (onClick)="voteTallyEntry()"/>
     </div>
+
+    <div class="flex justify-content-between">
+
+      <div
+        class="flex gap-2 mb-2"
+        [formGroup]="rf" >
+        <p-dropdown
+          [options]="schedules!"
+          optionLabel="name"
+          [loading]="schedules == null"
+          formControlName="schedule"
+          placeholder="Select a schedule"
+          styleClass="w-25rem"
+        />
+      </div>
+
+    </div>
+
   </div>
 
-  <br />
   <br />
 
   <p-table
@@ -26,8 +47,8 @@
       <!-- caption -->
         <ng-template pTemplate="caption">
           <div class="flex align-items-center justify-content-between">
-            Party List
-            <p-button icon="pi pi-refresh" (onClick)="voteTallyService.requestData();" />
+            Tally List
+            <p-button icon="pi pi-refresh" (onClick)="voteTallyService.requestData(null);" />
           </div>
         </ng-template>
 

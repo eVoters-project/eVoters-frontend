@@ -1,14 +1,14 @@
 import { inject, Injectable } from "@angular/core";
 import { VoteTallyApiService } from "../../service/api";
 import { concatMap, Observable, Subject, take, takeUntil } from "rxjs";
-import { VoteTallyInterface } from "../../interface";
+import { RequestVoteTallyInterface, VoteTallyInterface } from "../../interface";
 
 @Injectable()
 export class VoteTallyService {
   private voteTallyApi = inject(VoteTallyApiService);
 
   private voteTallyDataSubject = new Subject<VoteTallyInterface[]>;
-  private voteTallyDataRequestSubject = new Subject();
+  private voteTallyDataRequestSubject = new Subject<RequestVoteTallyInterface | null>();
   private voteTallyDataRequestCancelled = new Subject<boolean>();
 
   private voteTallyDataUpdateRequestSubject = new Subject<Partial<VoteTallyInterface>>();
@@ -26,8 +26,8 @@ export class VoteTallyService {
     this.setVoteTallyDataSubscription();
   }
 
-  requestData() {
-    this.voteTallyDataRequestSubject.next(null);
+  requestData(params: RequestVoteTallyInterface | null) {
+    this.voteTallyDataRequestSubject.next(params);
   }
 
   saveData(voter: VoteTallyInterface) {
@@ -47,12 +47,27 @@ export class VoteTallyService {
 
   setVoteTallyDataSubscription() {
     this.voteTallyDataRequestSubject.pipe(
-      concatMap(() =>
-        this.voteTallyApi.getAll().pipe(
-          takeUntil(this.voteTallyDataRequestCancelled),
-          take(1)
-        )
-      )
+      concatMap((params) => {
+        if (params && params.id) {
+          /*
+            possible additional switch or if statement if we have different types we are looking for,
+            for now default to schedule
+          */
+          switch (params.type) {
+            default: {
+              return this.voteTallyApi.getBySchedule(params.id).pipe(
+                takeUntil(this.voteTallyDataRequestCancelled),
+                take(1)
+              )
+            }
+          }
+        } else {
+          return this.voteTallyApi.getAll().pipe(
+            takeUntil(this.voteTallyDataRequestCancelled),
+            take(1)
+          )
+        }
+      })
     )
       .subscribe((res: any) => {
         if (res) {
