@@ -53,7 +53,7 @@ export class ElectionScheduleUpsertComponent {
   protected electionScheduleSave() {
     this.isSaving = true;
 
-    const data = this.rf.getRawValue();
+    const { sequence, description, ...data } = this.rf.getRawValue();
 
     this.isSaving = true;
 
