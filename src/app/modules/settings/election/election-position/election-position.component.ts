@@ -58,7 +58,11 @@ export class ElectionPositionComponent {
         modal: true,
         width: '45rem',
         height: 'calc(100vh - 100px)'
-      })
+      });
+    
+    ref.onClose.subscribe(() => {
+      this.electionPosition.requestData();
+    })
   }
 
   private electionPositionDataSubscription(): Subscription {

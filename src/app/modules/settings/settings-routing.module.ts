@@ -20,6 +20,10 @@ const routes: Routes = [
         loadChildren: () => import('./voter/setting-voter.module').then(m => m.SettingVoterModule)
       },
       {
+        path: 'general',
+        loadChildren: () => import('./general/setting-general.module').then(m => m.SettingGeneralModule)
+      },
+      {
         path: '',
         redirectTo: 'jurisdiction',
         pathMatch: 'full'

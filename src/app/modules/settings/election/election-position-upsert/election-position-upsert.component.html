@@ -9,36 +9,42 @@
     <h4>Elective Position Info.</h4>
 
     <div class="flex flex-column gap-2">
-      <label for="code">Code</label>
-      <input id="code"
-        pInputText type="text"
-        class="outline-none"
-        formControlName="code" />
-    </div>
-
-    <div class="flex flex-column gap-2">
-      <label for="name">Name</label>
-      <input id="name"
-        pInputText type="text"
-        class="outline-none"
-        formControlName="name" />
-    </div>
-
-    <div class="flex flex-column gap-2">
-      <label for="name">Description</label>
-      <input id="name"
-        pInputText type="text"
-        class="outline-none"
-        formControlName="description" />
-    </div>
-
-    <div class="flex flex-column gap-2">
-      <label for="status">Status</label>
-      <p-dropdown id="status"
+      <label for="election-schedule">Election Schedule</label>
+      <p-dropdown id="election-schedule"
         appendTo="body"
-        [options]="ELECTIVE_POSITION_STATUS"
+        optionLabel="name"
+        [options]="electionSchedules!"
+        [loading]="electionSchedules == null"
         [style]="{ width: '100%' }"
-        formControlName="status" />
+        formControlName="election_schedule" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="position">Position</label>
+      <p-dropdown id="position"
+        appendTo="body"
+        optionLabel="name"
+        [loading]="positions == null"
+        [options]="positions!"
+        [style]="{ width: '100%' }"
+        formControlName="position" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="code">Seat</label>
+      <input id="code"
+        pInputText type="number"
+        class="outline-none"
+        formControlName="seat" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="remarks">Remarks</label>
+      <textarea
+        id="remarks"
+        pInputTextarea
+        rows="3"
+        formControlName="remarks"></textarea>
     </div>
 
   </p-scrollPanel>

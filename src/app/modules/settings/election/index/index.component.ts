@@ -13,10 +13,10 @@ export class IndexComponent {
       label: 'Settings Menu',
       visible: true,
       items: [
-        { label: 'Schedule', icon: '', routerLink: ['schedule'] },
-        { label: 'Position', icon: '', routerLink: ['position'] },
-        { label: 'Precinct', icon: '', routerLink: ['precinct'] },
-        { label: 'Candidate', icon: '', routerLink: ['candidate'] }
+        { label: 'Election Schedule', icon: '', routerLink: ['schedule'] },
+        { label: 'Election Position', icon: '', routerLink: ['position'] },
+        { label: 'Election Precinct', icon: '', routerLink: ['precinct'] },
+        { label: 'Election Candidate', icon: '', routerLink: ['candidate'] }
       ]
     }
   ]

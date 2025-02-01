@@ -35,7 +35,7 @@ export class ElectionScheduleUpsertComponent {
 
   protected rf = this.fb.group({
     sequence: this.fb.control(0),
-    date: this.fb.control(new Date()),
+    date: this.fb.control(format(new Date(), 'yyyy-MM-dd')),
     type: this.fb.control('Presidential Election', { validators: [Validators.required] }),
     description: this.fb.control(''),
     status: this.fb.control('Active'),
@@ -53,7 +53,10 @@ export class ElectionScheduleUpsertComponent {
   protected electionScheduleSave() {
     this.isSaving = true;
 
-    const { sequence, description, ...data } = this.rf.getRawValue();
+    const { sequence, description, status, ...data } = this.rf.getRawValue();
+
+    //format properties
+    data.date = format(data?.date ?? new Date(), 'yyyy-MM-dd');
 
     this.isSaving = true;
 

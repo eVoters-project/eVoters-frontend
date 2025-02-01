@@ -1,0 +1,76 @@
+@if (isLoading) {
+    <div class="loading">
+      <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+      <span>Please wait...</span>
+    </div>
+  }
+  @else {
+    <p-scrollPanel class="flex flex-column gap-1" [formGroup]="rf">
+      <h4>Position Info.</h4>
+  
+      <div class="flex flex-column gap-2">
+        <label for="code">Code</label>
+        <input id="code"
+          pInputText type="text"
+          class="outline-none"
+          formControlName="code" />
+      </div>
+  
+      <div class="flex flex-column gap-2">
+        <label for="name">Name</label>
+        <input id="name"
+          pInputText type="text"
+          class="outline-none"
+          formControlName="name" />
+      </div>
+  
+      <div class="flex flex-column gap-2">
+        <label for="description">Description</label>
+        <textarea
+            id="description"
+            pInputTextarea
+            rows="3"
+            formControlName="description">
+        </textarea>
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="level">Level</label>
+        <p-dropdown id="level"
+          appendTo="body"
+          [options]="POSITION_LEVEL"
+          [style]="{ width: '100%' }"
+          formControlName="level" />
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="election_cycle">Election Cycle</label>
+        <p-dropdown id="election_cycle"
+          appendTo="body"
+          [options]="ELECTION_CYCLE"
+          [style]="{ width: '100%' }"
+          formControlName="election_cycle" />
+      </div>
+  
+      <div class="flex flex-column gap-2">
+        <label for="status">Status</label>
+        <p-dropdown id="status"
+          appendTo="body"
+          [options]="POSITION_STATUS"
+          [style]="{ width: '100%' }"
+          formControlName="status" />
+      </div>
+  
+    </p-scrollPanel>
+  
+    <div class="flex justify-content-start">
+      <button
+        pButton
+        pRipple
+        [loading]="isSaving"
+        label="Save"
+        (click)="positionSave()">
+      </button>
+    </div>
+  }
+  

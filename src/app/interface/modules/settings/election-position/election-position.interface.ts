@@ -1,8 +1,8 @@
 export interface ElectionPositionInterface {
   id?: string | null;
   sequence?: number | null;
-  code?: string | null;
+  schedule?: string | null;
   name?: string | null;
-  description?: string | null;
+  seat?: number | null;
   status?: string | null;
 }

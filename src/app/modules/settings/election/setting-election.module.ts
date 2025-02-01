@@ -50,7 +50,8 @@ import { InputNumberModule } from "primeng/inputnumber";
     InputTextModule,
     CalendarModule,
     InputTextareaModule,
-    InputNumberModule
+    InputNumberModule,
+    InputTextareaModule
   ],
   providers: [
     DialogService,

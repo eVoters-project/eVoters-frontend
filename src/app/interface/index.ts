@@ -50,3 +50,5 @@ export * from './modules/vote-tally/request-vote-tally.interface';
 export * from './modules/candidate/candidate.interface';
 export * from './modules/candidate/response-candidate.interface';
 export * from './modules/candidate/request-election-candidate.interface';
+
+export * from './modules/settings/general-position/position.interface';

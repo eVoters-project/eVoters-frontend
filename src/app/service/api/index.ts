@@ -28,3 +28,5 @@ export * from './settings/election/election-candidate/election-candidate.api.ser
 
 export * from './vote-tally/vote-tally.api.service';
 export * from './candidate/candidate.api.service';
+
+export * from './settings/general/position/position-api.service';

@@ -4,13 +4,18 @@ import { TableColumnInterface } from "../../../../shared/interface";
 
 export const ElectionPositionColumns: TableColumnInterface[] = [
   {
-    header: 'Code',
-    field: nameOf<ElectionPositionInterface>((obj) => obj.code),
-    width: '120px'
+    header: 'Election Schedule',
+    field: nameOf<ElectionPositionInterface>((obj) => obj.schedule),
+    width: 'auto'
   },
   {
-    header: 'Name',
+    header: 'Position',
     field: nameOf<ElectionPositionInterface>((obj) => obj.name),
+    width: 'auto'
+  },
+  {
+    header: 'No. of Seat',
+    field: nameOf<ElectionPositionInterface>((obj) => obj.seat),
     width: 'auto'
   }
 ];

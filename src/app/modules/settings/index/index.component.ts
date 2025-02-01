@@ -14,7 +14,8 @@ export class IndexComponent implements OnInit {
     this.menuItems = [
       { label: 'Jurisdiction', icon: '', routerLink: 'jurisdiction' },
       { label: 'Election', icon: '', routerLink: 'election' },
-      { label: 'Voter', icon: '', routerLink: 'voter' }
+      { label: 'Voter', icon: '', routerLink: 'voter' },
+      { label: 'General', icon: '', routerLink: 'general' }
     ];
   }
 }
