@@ -11,27 +11,27 @@ export class VoteTallyApiService {
   constructor() { }
 
   getAll() {
-    return this.http.get(`${this.urlApi}/trx-election-tally`);
+    return this.http.get(`${this.urlApi}/election-tally`);
   }
 
   getById(id: string) {
-    return this.http.get(`${this.urlApi}/trx-election-tally/${id}`);
+    return this.http.get(`${this.urlApi}/election-tally/${id}`);
   }
 
   getBySchedule(id: string) {
-    return this.http.get(`${this.urlApi}/trx-election-tally/schedule/${id}`);
+    return this.http.get(`${this.urlApi}/election-tally/schedule/${id}`);
   }
 
   create(payload: any) {
-    return this.http.post(`${this.urlApi}/trx-election-tally`, payload);
+    return this.http.post(`${this.urlApi}/election-tally`, payload);
   }
 
   update(payload: any) {
     const { id, ...rest } = payload;
-    return this.http.patch(`${this.urlApi}/trx-election-tally/${id}`, rest);
+    return this.http.patch(`${this.urlApi}/election-tally/${id}`, rest);
   }
 
   delete(id: string) {
-    return this.http.delete(`${this.urlApi}/trx-election-tally/${id}`);
+    return this.http.delete(`${this.urlApi}/election-tally/${id}`);
   }
 }

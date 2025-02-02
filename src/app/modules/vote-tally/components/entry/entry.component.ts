@@ -5,7 +5,7 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
 import { FormBuilder, Validators } from '@angular/forms';
 import { format } from 'date-fns';
-import { BarangayApiService, ElectionCandidateApiService, ElectionPositionApiService, ElectionPrecinctApiService, ElectionScheduleApiService } from '../../../../service/api';
+import { BarangayApiService, ElectionCandidateApiService, ElectionPositionApiService, ElectionPrecinctApiService, ElectionScheduleApiService, VoteTallyApiService } from '../../../../service/api';
 import { Subject, Subscription } from 'rxjs';
 import { BarangayInterface, ElectionCandidateInterface, ElectionPositionInterface, ElectionPrecinctInterface, ElectionScheduleInterface } from '../../../../interface';
 
@@ -23,7 +23,8 @@ interface GenericObject {
     ElectionPrecinctApiService,
     ElectionScheduleApiService,
     ElectionPositionApiService,
-    ElectionCandidateApiService
+    ElectionCandidateApiService,
+    VoteTallyApiService
   ]
 })
 export class EntryComponent implements OnInit, OnDestroy, AfterViewInit {
@@ -37,6 +38,7 @@ export class EntryComponent implements OnInit, OnDestroy, AfterViewInit {
   electionScheduleApiService = inject(ElectionScheduleApiService);
   electPositionApiService = inject(ElectionPositionApiService);
   electionCandidateApiService = inject(ElectionCandidateApiService);
+  voteTallyApiService = inject(VoteTallyApiService);
   dialogRef = inject(DynamicDialogRef);
   messageService = inject(MessageService);
 
@@ -46,10 +48,11 @@ export class EntryComponent implements OnInit, OnDestroy, AfterViewInit {
   protected rf = this.fb.group({
     date: this.fb.control(format(new Date(), 'MM/dd/yyyy'), { validators: [Validators.required] }),
     barangay: this.fb.control(null, { validators: [Validators.required] }),
-    precinct: this.fb.control(null, { validators: [Validators.required] }),
+    precinct: this.fb.control<any>(null, { validators: [Validators.required] }),
     schedule: this.fb.control(null, { validators: [Validators.required] }),
-    position: this.fb.control(null, { validators: [Validators.required] }),
-    candidate: this.fb.control(null, { validators: [Validators.required] }),
+    position: this.fb.control<any>(null, { validators: [Validators.required] }),
+    candidate: this.fb.control<any>(null, { validators: [Validators.required] }),
+    type: this.fb.control('EC'),
     count: this.fb.control(0, { validators: [Validators.required, Validators.min(0)] })
   });
 
@@ -85,7 +88,41 @@ export class EntryComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   protected voteTallySave() {
+    if (this.rf.invalid) {
+      this.rf.markAllAsTouched();
+      return;
+    };
 
+    const { schedule, barangay, ...data } = this.rf.getRawValue();
+    
+    data.date = format(data.date ?? new Date(), 'yyyy-MM-dd');
+    data.position = (({ id }) => ({ id }))(data.position || { id: '' });
+    data.candidate = (({ id }) => ({ id }))(data.candidate || { id: '' });
+    data.precinct = (({ id }) => ({ id }))(data.precinct || { id: '' });
+
+    this.isSaving = true;
+
+    const unsub$ = new Subject<void>();
+
+    this.performApiService.performApi([
+      { action: () => this.voteTallyApiService.create(data), tag: 'create-vote-tally' }
+    ], unsub$).subscribe({
+      next: (res) => {
+        if (res[0].error !== null) {
+          this.messageService.add({ severity: 'error', summary: '', detail: '' });
+          this.isSaving = false;
+        }
+
+        this.messageService.add({ severity: 'success', summary: 'Independent Candidate Created', detail: '' })
+
+        unsub$.next();
+        unsub$.complete();
+
+        setTimeout(() => {
+          this.dialogRef.close({ reload: true });
+        }, 500);
+      }
+    });
   }
 
   private preloadData() {
